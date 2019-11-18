@@ -3,15 +3,13 @@ package com.tnd.businesschainsystem.Service.Impl;
 import com.tnd.businesschainsystem.Bean.ResponseDTO;
 import com.tnd.businesschainsystem.Message.Constants;
 import com.tnd.businesschainsystem.Model.*;
-import com.tnd.businesschainsystem.Repository.BranchRepository;
-import com.tnd.businesschainsystem.Repository.EquipmentRepository;
-import com.tnd.businesschainsystem.Repository.MaterialBranchRepository;
-import com.tnd.businesschainsystem.Repository.MaterialRepository;
+import com.tnd.businesschainsystem.Repository.*;
 import com.tnd.businesschainsystem.Service.ResourceManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -28,6 +26,15 @@ public class ResourceManagementServiceImpl implements ResourceManagementService 
 
     @Autowired
     private BranchRepository branchRepository;
+
+    @Autowired
+    private ShipwayRepository shipwayRepository;
+
+    @Autowired
+    private ImportRepository importRepository;
+
+    @Autowired
+    private AccountRepository accountRepository;
 
     @Override
     public List<ResourceDTO> getResources(String branch, String type, String status) {
@@ -98,6 +105,67 @@ public class ResourceManagementServiceImpl implements ResourceManagementService 
             return new ResponseDTO().success(Constants.DONE_UPDATERESOURCE);
         } catch (Exception e) {
             return new ResponseDTO().fail(Constants.FAIL_UPDATERESOURCE);
+        }
+    }
+
+    @Override
+    public ResponseDTO addShipways(List<Shipway> shipways, String username) {
+
+        try {
+            Account acc = accountRepository.findByUsername(username);
+            shipways.stream().forEach(shipway -> {
+                shipway.generateId();
+                shipway.setCreatedDate(new Date());
+                shipway.setCreatedBy(acc.getEmployee());
+            });
+
+            shipwayRepository.saveAll(shipways);
+            return new ResponseDTO().success(Constants.DONE_ADDSHIPWAY);
+        } catch (Exception e) {
+            return new ResponseDTO().fail(Constants.FAIL_ADDSHIPWAY);
+        }
+    }
+
+    @Override
+    public ResponseDTO addImport(List<Import> imports, String username) {
+
+        try {
+            Account acc = accountRepository.findByUsername(username);
+            imports.stream().forEach(imp -> {
+                imp.generateId();
+                imp.setCreatedDate(new Date());
+                imp.setCreatedBy(acc.getEmployee());
+            });
+
+            importRepository.saveAll(imports);
+            return new ResponseDTO().success(Constants.DONE_ADDIMPORT);
+        } catch (Exception e) {
+            return new ResponseDTO().fail(Constants.FAIL_ADDIMPORT);
+        }
+    }
+
+    @Override
+    public ResponseDTO addResource(ResourceDTO resourceDTO) {
+
+        try {
+            if(resourceDTO.getType() == ResourceDTO.MATERIAL) {
+                Material material = new Material();
+                material.setMaterialID(ResourceDTO.generateID(resourceDTO));
+                material.setCount(0);
+                material.setName(resourceDTO.getName());
+                materialRepository.save(material);
+            } else {
+                Equipment equipment = new Equipment();
+                equipment.setEquipmentID(ResourceDTO.generateID(resourceDTO));
+                equipment.setStatus(0);
+                equipment.setName(resourceDTO.getName());
+                equipment.setBranch(resourceDTO.getBranchId());
+                equipmentRepository.save(equipment);
+            }
+
+            return new ResponseDTO().success(Constants.DONE_ADDRESOURCE);
+        } catch (Exception e) {
+            return new ResponseDTO().fail(Constants.FAIL_ADDRESOURCE);
         }
     }
 }

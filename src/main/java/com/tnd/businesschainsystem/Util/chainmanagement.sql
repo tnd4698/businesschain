@@ -16,7 +16,7 @@ create table rule(
 	id int not null auto_increment primary key,
     name varchar(64),
     value varchar(16),
-    type int, /* 0: danh muc hoa don, 1: khuyen mai, 2 : hop dong */
+    type int, /* 0: danh muc hoa don, 1: hop dong */
     branch int
 );
 
@@ -32,6 +32,7 @@ create table employee(
     email varchar(64),
     branch int,
     status int,
+    salary long,
     createdDate datetime,
     createdBy int,
     updatedDate datetime,
@@ -101,18 +102,20 @@ create table shipway(
     fromBranch int,
     toBranch int,
     resourceID varchar(100),
-    count int
+    count int,
+    createdDate date,
+    createdBy int
 );
 
 create table bill(
 	id int not null auto_increment primary key,
     itemMenu int,
-    name varchar(100),
     count int,
     price long,
     total long,
     createdDate datetime,
-    createdBy int
+    createdBy int,
+    branch int
 );
 
 create table class(
@@ -163,7 +166,7 @@ create table student_class(
 	id int not null auto_increment primary key,
     student int,
     class int,
-    statscheduleus int,
+    status int,
     statusTuition int
 );
 
@@ -172,7 +175,8 @@ create table tuition(
     studentClass int,
     totalMoney long,
     createdDate datetime,
-    createdBy int
+    createdBy int,
+    branch int
 );
 
 create table spend(
@@ -180,5 +184,89 @@ create table spend(
     content longtext,
     totalMoney long,
     createdDate datetime,
-    createBy int
+    createdBy int,
+    branch int
 );
+
+create table payroll(
+	id int not null auto_increment primary key,
+    month int,
+    year int,
+    employee int,
+    salary long,
+    absent int,
+    other long,
+    contentOther longtext,
+    totalMoney long,
+    createdDate datetime,
+    createdBy int
+);
+
+DELIMITER |
+create trigger add_shipway after insert
+on shipway
+for each row
+begin
+	if( NEW.resourceID like 'MTL%') then
+		if((select count(*) from material_branch mb 
+			where mb.branch = NEW.toBranch 
+			and exists(select * from material m where m.materialID = NEW.resourceID and m.id = mb.material)
+            ) = 0 )then 
+            insert material_branch(material,branch,count) values (
+				(select id from material where materialID = new.resourceID),
+                new.toBranch,
+                new.count
+			);
+		else
+			update material_branch mb set count = count + NEW.count
+			where mb.branch = NEW.toBranch 
+			and exists(select * from material m where m.materialID = NEW.resourceID and m.id = mb.material);
+		end if;
+        
+        update material_branch mb set count = count - NEW.count
+        where mb.branch = NEW.fromBranch 
+        and exists(select * from material m where m.materialID = NEW.resourceID and m.id = mb.material);        
+	else
+    
+		update equipment e set branch = new.toBranch
+        where e.equipmentID = new.resourceID;
+	end if;
+end;
+|
+DELIMITER ;
+
+DELIMITER |
+create trigger add_import after insert
+on import
+for each row
+begin
+	if( NEW.resourceID like 'MTL%') then
+		
+        update material_branch mb set count = count + NEW.count
+        where mb.branch = 1 
+        and exists(select * from material m where m.materialID = NEW.resourceID and m.id = mb.material);
+		
+        update material m set count = count + NEW.count
+        where m.materialID = NEW.resourceID;        
+	else
+    
+		update equipment e set status = 1
+        where e.equipmentID = new.resourceID;
+	end if;
+end;
+|
+DELIMITER ;
+
+DELIMITER |
+create trigger add_material after insert
+on material
+for each row
+begin
+	insert material_branch(material,branch,count) values (
+		new.id,
+        1,
+        0
+    );
+end;
+|
+DELIMITER ;

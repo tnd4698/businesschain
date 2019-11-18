@@ -1,6 +1,9 @@
 package com.tnd.businesschainsystem.Model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class BranchDTO {
 
@@ -13,6 +16,7 @@ public class BranchDTO {
     private String managerPhone;
     private int status;
     private Date openDate;
+    private List<Rule> rules;
 
     public int getId() {
         return id;
@@ -74,15 +78,32 @@ public class BranchDTO {
         this.status = status;
     }
 
-    public Date getOpenDate() {
-        return openDate;
+    public List<Rule> getRules() {
+        return rules;
+    }
+
+    public void setRules(List<Rule> rules) {
+        this.rules = rules;
+    }
+
+    public String getOpenDate() {
+        return (new SimpleDateFormat("yyyy/MM/dd")).format(this.openDate);
+    }
+
+    public void setOpenDate(String date) {
+
+        try {
+            this.openDate = (new SimpleDateFormat("yyyy/MM/dd")).parse(date);
+        } catch (ParseException e) {
+            System.out.println("Exception : " + e);
+        }
     }
 
     public void setOpenDate(Date openDate) {
         this.openDate = openDate;
     }
 
-    public void doMappingBranch(Branch branch, Employee employee) {
+    public void doMappingBranch(Branch branch, Employee employee, List<Rule> rules) {
         this.id = branch.getId();
         this.name = branch.getName();
         this.address = branch.getAddress();
@@ -91,6 +112,7 @@ public class BranchDTO {
         this.managerName = employee.getName();
         this.managerPhone = employee.getPhoneNumber();
         this.status = branch.getStatus();
-        this.openDate = branch.getOpenDate();
+        this.setOpenDate(branch.getOpenDate());
+        this.rules = rules;
     }
 }

@@ -2,12 +2,10 @@ package com.tnd.businesschainsystem.Service.Impl;
 
 import com.tnd.businesschainsystem.Bean.ResponseDTO;
 import com.tnd.businesschainsystem.Message.Constants;
-import com.tnd.businesschainsystem.Model.Account;
-import com.tnd.businesschainsystem.Model.StudentClass;
-import com.tnd.businesschainsystem.Model.Tuition;
-import com.tnd.businesschainsystem.Model.TuitionDTO;
+import com.tnd.businesschainsystem.Model.*;
 import com.tnd.businesschainsystem.Repository.AccountRepository;
 import com.tnd.businesschainsystem.Repository.StudentClassRepository;
+import com.tnd.businesschainsystem.Repository.StudentRepository;
 import com.tnd.businesschainsystem.Repository.TuitionRepository;
 import com.tnd.businesschainsystem.Service.TuitionManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +25,16 @@ public class TuitionManagementServiceImpl implements TuitionManagementService {
     @Autowired
     private StudentClassRepository studentClassRepository;
 
+    @Autowired
+    private StudentRepository studentRepository;
+
     @Override
     public ResponseDTO add(TuitionDTO tuitionDTO, String username) {
 
         try {
             Account acc = accountRepository.findByUsername(username);
             StudentClass studentClass = studentClassRepository.findByStudentId(tuitionDTO.getStudentId());
+            Student student = studentRepository.findById(studentClass.getStudent()).get();
             if(studentClass == null || studentClass.getClasss() != tuitionDTO.getClassId())
                 throw new Exception("Khong co lop hoc de dong hoc phi");
             if(studentClass.getStatusTuition()==1)
@@ -43,6 +45,7 @@ public class TuitionManagementServiceImpl implements TuitionManagementService {
             tuition.setCreatedBy(acc.getEmployee());
             tuition.setTotalMoney(tuitionDTO.getTotalMoney());
             tuition.setCreatedDate(new Date());
+            tuition.setBranch(student.getBranch());
             tuitionRepository.save(tuition);
 
             studentClass.setStatusTuition(1);

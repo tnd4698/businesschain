@@ -50,11 +50,18 @@ public class EmployeeManagementController {
     }
 
     @GetMapping("/timeworks")
-    public ResponseEntity<?> getTimeworks(@RequestParam String startDate,
+    public ResponseEntity<?> getTimeworks(@RequestParam(defaultValue = "null",required = false) String date,
+                                          @RequestParam(defaultValue = "null",required = false) String branch) {
+
+        return new ResponseEntity<>(employeeManagementService.getTimeworks(date, branch),HttpStatus.OK);
+    }
+
+    @GetMapping("/timeworks/list")
+    public ResponseEntity<?> getTimeworkLists(@RequestParam String startDate,
                                           @RequestParam String endDate,
                                           @RequestParam(value="branch",defaultValue = "null",required = false) String branch) {
 
-        return new ResponseEntity<>(employeeManagementService.getTimeworks(startDate, endDate, branch),HttpStatus.OK);
+        return new ResponseEntity<>(employeeManagementService.getTimeworkLists(startDate, endDate, branch),HttpStatus.OK);
     }
 
     @GetMapping("/timeworks/new")

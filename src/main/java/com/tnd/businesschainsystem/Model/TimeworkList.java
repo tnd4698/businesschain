@@ -11,12 +11,12 @@ public class TimeworkList {
     private String branchName;
 
     public String getDate() {
-        return (new SimpleDateFormat("dd/MM/yyyy")).format(this.date);
+        return (new SimpleDateFormat("yyyy/MM/dd")).format(this.date);
     }
 
     public void setDate(String date) {
         try {
-            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
             this.date = df.parse(date);
         } catch (ParseException e) {
             System.out.println(e);

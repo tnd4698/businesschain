@@ -42,6 +42,9 @@ public class Employee {
     @Column(name="status")
     private int status;
 
+    @Column(name="salary")
+    private long salary;
+
     @Column(name="createdDate")
     private Date createdDate;
 
@@ -138,6 +141,14 @@ public class Employee {
         this.status = status;
     }
 
+    public long getSalary() {
+        return salary;
+    }
+
+    public void setSalary(long salary) {
+        this.salary = salary;
+    }
+
     public Date getCreatedDate() {
         return createdDate;
     }
@@ -191,6 +202,7 @@ public class Employee {
         this.email = e.getEmail();
         this.branch = e.getBranchId();
         this.status = e.getStatus();
+        this.salary = e.getSalary();
         this.createdDate = e.getCreatedDate();
         this.createdBy = e.getCreatedBy();
         this.updatedDate = e.getUpdatedDate();

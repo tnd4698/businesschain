@@ -28,13 +28,13 @@ public class Timework {
     }
 
     public String getDate() {
-        return (new SimpleDateFormat("dd/MM/yyyy")).format(this.date);
+        return (new SimpleDateFormat("yyyy/MM/dd")).format(this.date);
     }
 
     public void setDate(String date) {
 
         try {
-            this.date = (new SimpleDateFormat("dd/MM/yyyy")).parse(date);
+            this.date = (new SimpleDateFormat("yyyy/MM/dd")).parse(date);
         } catch (ParseException e) {
             System.out.println("Exception : " + e);
         }

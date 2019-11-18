@@ -1,5 +1,7 @@
 package com.tnd.businesschainsystem.Service.Impl;
 
+import com.tnd.businesschainsystem.Bean.ResponseDTO;
+import com.tnd.businesschainsystem.Message.Constants;
 import com.tnd.businesschainsystem.Model.*;
 import com.tnd.businesschainsystem.Repository.BranchRepository;
 import com.tnd.businesschainsystem.Repository.EmployeeRepository;
@@ -26,7 +28,7 @@ public class BranchManagementServiceImpl implements BranchManagementService {
     @Override
     public List<ItemMenuDAO> getMenuItems(int branchId) {
 
-        List<Rule> listItems = ruleRepository.findByBranchIdAndType(branchId,0);
+        List<Rule> listItems = ruleRepository.findByBranchIdAndType(branchId,Rule.MENU_ITEM);
         List<ItemMenuDAO> list = new ArrayList<>();
         for(Rule rule : listItems) {
             ItemMenuDAO itemMenuDAO = new ItemMenuDAO();
@@ -49,11 +51,58 @@ public class BranchManagementServiceImpl implements BranchManagementService {
                     continue;
 
             Employee employee = employeeRepository.findById(branches.get(i).getManager()).get();
-
+            List<Rule> rules = ruleRepository.findByBranchId(branches.get(i).getId());
             BranchDTO branchDTO = new BranchDTO();
-            branchDTO.doMappingBranch(branches.get(i), employee);
+            branchDTO.doMappingBranch(branches.get(i), employee, rules);
             list.add(branchDTO);
         }
         return list;
+    }
+
+    @Override
+    public BranchDTO getBranch(int branchId) {
+
+            Branch branch = branchRepository.findById(branchId).get();
+            List<Rule> rules = ruleRepository.findByBranchId(branch.getId());
+            Employee employee = employeeRepository.findById(branch.getManager()).get();
+            BranchDTO branchDTO = new BranchDTO();
+            branchDTO.doMappingBranch(branch, employee, rules);
+            return branchDTO;
+    }
+
+    @Override
+    public ResponseDTO addBranch(BranchDTO branchDTO) {
+
+        try {
+
+            Branch branch = new Branch();
+            branch.doMappingBranchDTO(branchDTO);
+            branchRepository.save(branch);
+
+            branchDTO.getRules().stream().forEach(rule -> {
+                rule.generateId();
+                rule.setBranch(branch.getId());
+            });
+            ruleRepository.saveAll(branchDTO.getRules());
+            return new ResponseDTO().success(Constants.DONE_ADDBRANCH);
+        } catch (Exception e) {
+            return new ResponseDTO().fail(Constants.FAIL_ADDBRANCH);
+        }
+    }
+
+    @Override
+    public ResponseDTO updateBranch(BranchDTO branchDTO, int branchId) {
+
+        try {
+
+            Branch branch = branchRepository.findById(branchId).get();
+            branch.doMappingBranchDTO(branchDTO);
+            branchRepository.save(branch);
+            ruleRepository.saveAll(branchDTO.getRules());
+
+            return new ResponseDTO().success(Constants.DONE_UPDATEBRANCH);
+        } catch (Exception e) {
+            return new ResponseDTO().fail(Constants.FAIL_UPDATEBRANCH);
+        }
     }
 }

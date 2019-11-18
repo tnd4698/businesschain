@@ -8,6 +8,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -58,6 +59,9 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
     @Autowired
     private ShiftRepository shiftRepository;
 
+    @Autowired
+    private PayrollRepository payrollRepository;
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         if(roleRepository.findById(1).isEmpty()) {
@@ -91,11 +95,13 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             Branch origin = new Branch();
             origin.setName("origin");
             origin.setManager(1);
+            origin.setOpenDate(new Date());
             branchRepository.save(origin);
 
             Branch sub = new Branch();
             sub.setName("sub");
             sub.setManager(2);
+            sub.setOpenDate(new Date());
             branchRepository.save(sub);
 
             // rule branch origin
@@ -112,6 +118,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             admin.setName("Admin");
             admin.setBranch(1);
             admin.setStatus(1);
+            admin.setSalary(10000000);
             employeeRepository.save(admin);
 
             EmployeeRole employeeRole = new EmployeeRole();
@@ -130,8 +137,9 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             Employee manager = new Employee();
             manager.generateID(((List<Employee>)employeeRepository.findAll()).size()+1);
             manager.setName("Manager");
-            manager.setBranch(1);
+            manager.setBranch(2);
             manager.setStatus(1);
+            manager.setSalary(1000000);
             employeeRepository.save(manager);
 
             EmployeeRole employeeRole1 = new EmployeeRole();
@@ -152,6 +160,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             teacher.setName("teacher");
             teacher.setBranch(1);
             teacher.setStatus(1);
+            teacher.setSalary(2000000);
             employeeRepository.save(teacher);
 
             EmployeeRole employeeRole2 = new EmployeeRole();
@@ -163,20 +172,26 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             Timework timework1 = new Timework();
             timework1.setDate("03/11/2019");
             timework1.setEmployee(admin.getId());
-            timework1.setStatus(1);
+            timework1.setStatus(TimeworkDTO.ABSENT);
             timeworkRepository.save(timework1);
 
             Timework timework2 = new Timework();
             timework2.setDate("04/11/2019");
             timework2.setEmployee(admin.getId());
-            timework2.setStatus(0);
+            timework2.setStatus(TimeworkDTO.ACTIVE);
             timeworkRepository.save(timework2);
 
             Timework timework3 = new Timework();
             timework3.setDate("04/11/2019");
             timework3.setEmployee(manager.getId());
-            timework3.setStatus(0);
+            timework3.setStatus(TimeworkDTO.ABSENT);
             timeworkRepository.save(timework3);
+
+            Timework timework4 = new Timework();
+            timework4.setDate("04/11/2019");
+            timework4.setEmployee(teacher.getId());
+            timework4.setStatus(TimeworkDTO.ABSENT);
+            timeworkRepository.save(timework4);
 
             // resources
             Material cafe = new Material();
@@ -326,7 +341,19 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             studentClass1.setStatus(1);
             studentClassRepository.save(studentClass1);
 
-
+            //payroll
+//            Payroll payroll = new Payroll();
+//            payroll.setCreatedBy(admin.getId());
+//            payroll.setCreatedDate(new Date());
+//            payroll.setAbsent(0);
+//            payroll.setContentOther("");
+//            payroll.setEmployee(manager.getId());
+//            payroll.setMonth(11);
+//            payroll.setYear(2019);
+//            payroll.setOther(0);
+//            payroll.setSalary(100000);
+//            payroll.setTotalMoney(1000000);
+//            payrollRepository.save(payroll);
         }
     }
 

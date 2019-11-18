@@ -26,6 +26,9 @@ public class Tuition {
     @Column(name="createdBy")
     private int createdBy;
 
+    @Column(name="branch")
+    private int branch;
+
     public int getId() {
         return id;
     }
@@ -51,13 +54,13 @@ public class Tuition {
     }
 
     public String getCreatedDate() {
-        return (new SimpleDateFormat("dd/MM/yyyy")).format(this.createdDate);
+        return (new SimpleDateFormat("yyyy/MM/dd")).format(this.createdDate);
     }
 
     public void setCreatedDate(String date) {
 
         try {
-            this.createdDate = (new SimpleDateFormat("dd/MM/yyyy")).parse(date);
+            this.createdDate = (new SimpleDateFormat("yyyy/MM/dd")).parse(date);
         } catch (ParseException e) {
             System.out.println("Exception : " + e);
         }
@@ -71,4 +74,11 @@ public class Tuition {
         this.createdBy = createdBy;
     }
 
+    public int getBranch() {
+        return branch;
+    }
+
+    public void setBranch(int branch) {
+        this.branch = branch;
+    }
 }

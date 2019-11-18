@@ -6,14 +6,13 @@ import javax.persistence.*;
 @Table(name="rule")
 public class Rule {
 
+    public static final int MENU_ITEM = 0;
+    public static final int CONTRACT = 1;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
-    public int getId() {
-        return id;
-    }
 
     @Column(name="name")
     private String name;
@@ -26,6 +25,10 @@ public class Rule {
 
     @Column(name="type")
     private int type;
+
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -57,5 +60,9 @@ public class Rule {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public void generateId() {
+        this.id = 0;
     }
 }

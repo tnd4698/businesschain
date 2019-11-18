@@ -168,7 +168,7 @@ public class EmployeeManagementServiceImpl implements EmployeeManagementService 
     }
 
     @Override
-    public List<TimeworkList> getTimeworks(String startDate, String endDate, String branch) {
+    public List<TimeworkList> getTimeworkLists(String startDate, String endDate, String branch) {
 
         List<TimeworkList> list = new ArrayList<>();
 
@@ -192,7 +192,7 @@ public class EmployeeManagementServiceImpl implements EmployeeManagementService 
     public List<TimeworkDTO> getNewTimeworks(String date, int branchId) {
 
         List<TimeworkDTO> list = new ArrayList<>();
-        List<Timework> timeworks = timeworkRepository.findTimeworkList(date,date);
+        List<Timework> timeworks = timeworkRepository.findTimeworkByDuration(date,date);
         if(timeworks.size() == 0) {
 
             List<Employee> employees = employeeRepository.findByBranchId(branchId);
@@ -237,6 +237,27 @@ public class EmployeeManagementServiceImpl implements EmployeeManagementService 
         } catch (Exception e) {
             return new ResponseDTO().fail(Constants.FAIL_UPDATETIMEWORK);
         }
+    }
+
+    @Override
+    public List<TimeworkDTO> getTimeworks(String date, String branch) {
+
+        List<TimeworkDTO> list = new ArrayList<>();
+        List<Timework> timeworks;
+        if(!date.equals("null"))
+            timeworks = timeworkRepository.findTimeworkByDuration(date,date);
+        else
+            timeworks = (List<Timework>) timeworkRepository.findAll();
+        for(int i = 0;i<timeworks.size();i++) {
+            Employee employee = employeeRepository.findById(timeworks.get(i).getEmployee()).get();
+            if(!branch.equals("null") && employee.getBranch() != Integer.parseInt(branch))
+                continue;
+            TimeworkDTO timeworkDTO = new TimeworkDTO();
+            timeworkDTO.doMappingTimework(timeworks.get(i),employee);
+            list.add(timeworkDTO);
+        }
+
+        return list;
     }
 
 

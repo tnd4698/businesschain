@@ -1,6 +1,8 @@
 package com.tnd.businesschainsystem.Model;
 
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -29,4 +31,69 @@ public class Import {
 
     @Column(name="createdBy")
     private int createdBy;
+
+    public int getId() {
+        return id;
+    }
+
+    public void generateId(){
+        this.id = 0;
+    }
+
+    public String getResourceID() {
+        return resourceID;
+    }
+
+    public void setResourceID(String resourceID) {
+        this.resourceID = resourceID;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public long getPrice() {
+        return price;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
+    }
+
+    public long getTotalMoney() {
+        return totalMoney;
+    }
+
+    public void setTotalMoney(long totalMoney) {
+        this.totalMoney = totalMoney;
+    }
+
+    public int getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(int createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getCreatedDate() {
+        return (new SimpleDateFormat("yyyy/MM/dd")).format(this.createdDate);
+    }
+
+    public void setCreatedDate(String date) {
+
+        try {
+            this.createdDate = (new SimpleDateFormat("yyyy/MM/dd")).parse(date);
+        } catch (ParseException e) {
+            System.out.println("Exception : " + e);
+        }
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
 }

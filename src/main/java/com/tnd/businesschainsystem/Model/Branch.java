@@ -1,6 +1,8 @@
 package com.tnd.businesschainsystem.Model;
 
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -63,11 +65,28 @@ public class Branch {
         this.status = status;
     }
 
-    public Date getOpenDate() {
-        return openDate;
-    }
-
     public void setOpenDate(Date openDate) {
         this.openDate = openDate;
+    }
+
+    public String getOpenDate() {
+        return (new SimpleDateFormat("yyyy/MM/dd")).format(this.openDate);
+    }
+
+    public void setOpenDate(String date) {
+
+        try {
+            this.openDate = (new SimpleDateFormat("yyyy/MM/dd")).parse(date);
+        } catch (ParseException e) {
+            System.out.println("Exception : " + e);
+        }
+    }
+
+    public void doMappingBranchDTO(BranchDTO branchDTO) {
+        this.name = branchDTO.getName();
+        this.address = branchDTO.getAddress();
+        this.manager = branchDTO.getManagerId();
+        this.status = branchDTO.getStatus();
+        this.setOpenDate(branchDTO.getOpenDate());
     }
 }

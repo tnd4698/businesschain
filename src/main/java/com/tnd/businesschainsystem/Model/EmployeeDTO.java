@@ -16,6 +16,7 @@ public class EmployeeDTO {
     private int branchId;
     private String branchName;
     private int status;
+    private long salary;
     private int roleId;
     private String roleName;
     private Date createdDate;
@@ -115,6 +116,14 @@ public class EmployeeDTO {
         this.status = status;
     }
 
+    public long getSalary() {
+        return salary;
+    }
+
+    public void setSalary(long salary) {
+        this.salary = salary;
+    }
+
     public int getRoleId() {
         return roleId;
     }
@@ -177,6 +186,7 @@ public class EmployeeDTO {
         this.branchId = employee.getBranch();
         this.branchName = branch.getName();
         this.status = employee.getStatus();
+        this.salary = employee.getSalary();
         this.roleId = role.getId();
         this.roleName = role.getRole();
         this.createdDate = employee.getCreatedDate();

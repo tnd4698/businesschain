@@ -19,11 +19,13 @@ public interface EmployeeManagementService {
 
     ResponseDTO update(EmployeeDTO employee, String employeeID, String username);
 
-    List<TimeworkList> getTimeworks(String startDate, String endDate, String branch);
+    List<TimeworkList> getTimeworkLists(String startDate, String endDate, String branch);
 
     List<TimeworkDTO> getNewTimeworks(String date, int branchId);
 
     ResponseDTO addTimeworks(List<TimeworkDTO> timeworkDTOs);
 
     ResponseDTO updateTimeworks(List<Timework> timeworks);
+
+    List<TimeworkDTO> getTimeworks(String date, String branch);
 }

@@ -6,6 +6,9 @@ import java.util.Date;
 
 public class TimeworkDTO {
 
+    public static final int ABSENT = 0;
+    public static final int ACTIVE = 1;
+
     private int id;
     private Date date;
     private int employeeId;
@@ -16,14 +19,18 @@ public class TimeworkDTO {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getDate() {
-        return (new SimpleDateFormat("dd/MM/yyyy")).format(this.date);
+        return (new SimpleDateFormat("yyyy/MM/dd")).format(this.date);
     }
 
     public void setDate(String date) {
 
         try {
-            this.date = (new SimpleDateFormat("dd/MM/yyyy")).parse(date);
+            this.date = (new SimpleDateFormat("yyyy/MM/dd")).parse(date);
         } catch (ParseException e) {
             System.out.println("Exception : " + e);
         }
@@ -51,5 +58,13 @@ public class TimeworkDTO {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public void doMappingTimework(Timework timework, Employee employee) {
+        this.id = timework.getId();
+        this.setDate(timework.getDate());
+        this.employeeId=timework.getEmployee();
+        this.employeeName=employee.getName();
+        this.status=timework.getStatus();
     }
 }

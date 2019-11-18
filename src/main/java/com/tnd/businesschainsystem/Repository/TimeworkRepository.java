@@ -12,4 +12,7 @@ public interface TimeworkRepository extends CrudRepository<Timework,Integer> {
 
     @Query(value = "Select * from timework where date between ?1 and ?2 group by date order by date ASC", nativeQuery = true)
     List<Timework> findTimeworkList(String startDate, String endDate);
+
+    @Query(value = "Select * from timework where date between ?1 and ?2", nativeQuery = true)
+    List<Timework> findTimeworkByDuration(String startDate, String endDate);
 }

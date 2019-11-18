@@ -15,9 +15,6 @@ public class Bill {
     @Column(name="itemMenu")
     private int itemMenu;
 
-    @Column(name="name")
-    private String name;
-
     @Column(name= "count")
     private int count;
 
@@ -33,6 +30,9 @@ public class Bill {
     @Column(name="createdBy")
     private int createdBy;
 
+    @Column(name= "branch")
+    private int branch;
+
     public int getId() {
         return id;
     }
@@ -43,14 +43,6 @@ public class Bill {
 
     public void setItemMenu(int itemMenu) {
         this.itemMenu = itemMenu;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getCount() {
@@ -91,5 +83,13 @@ public class Bill {
 
     public void setCreatedBy(int createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public int getBranch() {
+        return branch;
+    }
+
+    public void setBranch(int branch) {
+        this.branch = branch;
     }
 }

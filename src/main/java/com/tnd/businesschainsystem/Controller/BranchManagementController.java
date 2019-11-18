@@ -1,5 +1,6 @@
 package com.tnd.businesschainsystem.Controller;
 
+import com.tnd.businesschainsystem.Model.Branch;
 import com.tnd.businesschainsystem.Model.BranchDTO;
 import com.tnd.businesschainsystem.Model.ItemMenuDAO;
 import com.tnd.businesschainsystem.Service.BranchManagementService;
@@ -24,10 +25,28 @@ public class BranchManagementController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<?> getBranches(@RequestParam(value="status",defaultValue = "1",required = false) String status) {
 
         List<BranchDTO> list = branchManagementService.getBranches(status);
         return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+    @GetMapping("/{branchId}")
+    public ResponseEntity<?> getBranch(@PathVariable int branchId) {
+
+        return new ResponseEntity<>(branchManagementService.getBranch(branchId),HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> addBranch(@RequestBody BranchDTO branchDTO) {
+
+        return new ResponseEntity<>(branchManagementService.addBranch(branchDTO),HttpStatus.OK);
+    }
+
+    @PutMapping("/{branchId}")
+    public ResponseEntity<?> updateBranch(@RequestBody BranchDTO branchDTO, @PathVariable int branchId) {
+
+        return new ResponseEntity<>(branchManagementService.updateBranch(branchDTO,branchId),HttpStatus.OK);
     }
 }
