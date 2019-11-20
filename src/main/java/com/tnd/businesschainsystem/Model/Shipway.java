@@ -26,6 +26,12 @@ public class Shipway {
     @Column(name = "count")
     private int count;
 
+    @Column(name = "price")
+    private long price;
+
+    @Column(name = "totalMoney")
+    private long totalMoney;
+
     @Column(name = "createdDate")
     private Date createdDate;
 
@@ -70,6 +76,22 @@ public class Shipway {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public long getPrice() {
+        return price;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
+    }
+
+    public long getTotalMoney() {
+        return totalMoney;
+    }
+
+    public void setTotalMoney(long totalMoney) {
+        this.totalMoney = totalMoney;
     }
 
     public int getCreatedBy() {

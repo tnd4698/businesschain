@@ -209,13 +209,12 @@ public class EmployeeManagementServiceImpl implements EmployeeManagementService 
     }
 
     @Override
-    public ResponseDTO addTimeworks(List<TimeworkDTO> timeworkDTOs) {
+    public ResponseDTO addTimeworks(List<Timework> timeworks) {
 
         try{
 
-            for(TimeworkDTO timeworkDTO : timeworkDTOs) {
-                Timework timework = new Timework();
-                timework.doMappingTimeworkDTO(timeworkDTO);
+            for(Timework timework : timeworks) {
+                timework.generateId();
                 timeworkRepository.save(timework);
             }
             return new ResponseDTO().success(Constants.DONE_ADDTIMEWORK);

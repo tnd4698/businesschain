@@ -71,9 +71,9 @@ public class EmployeeManagementController {
     }
 
     @PostMapping("/timeworks")
-    public ResponseEntity<?> addTimeworks(@RequestBody List<TimeworkDTO> timeworkDTOs) {
+    public ResponseEntity<?> addTimeworks(@RequestBody List<Timework> timeworks) {
 
-        return new ResponseEntity<>(employeeManagementService.addTimeworks(timeworkDTOs),HttpStatus.OK);
+        return new ResponseEntity<>(employeeManagementService.addTimeworks(timeworks),HttpStatus.OK);
     }
 
     @PutMapping("/timeworks")

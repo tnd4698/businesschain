@@ -20,6 +20,9 @@ public class Material {
     @Column(name="count")
     private int count;
 
+    @Column(name="price")
+    private int price;
+
     public int getId() {
         return id;
     }
@@ -48,4 +51,11 @@ public class Material {
         this.count = count;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 }

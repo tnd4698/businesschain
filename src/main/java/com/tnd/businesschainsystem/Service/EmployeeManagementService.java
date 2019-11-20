@@ -23,7 +23,7 @@ public interface EmployeeManagementService {
 
     List<TimeworkDTO> getNewTimeworks(String date, int branchId);
 
-    ResponseDTO addTimeworks(List<TimeworkDTO> timeworkDTOs);
+    ResponseDTO addTimeworks(List<Timework> timeworks);
 
     ResponseDTO updateTimeworks(List<Timework> timeworks);
 

@@ -70,6 +70,7 @@ create table equipment(
     equipmentID varchar(100),
     name varchar(100),
     status int,
+    price long,
     branch int
 );
 
@@ -77,7 +78,8 @@ create table material(
 	id int not null auto_increment primary key,
     materialID varchar(100),
     name varchar(100),
-    count int
+    count int,
+    price long
 );
 
 create table material_branch(
@@ -103,6 +105,8 @@ create table shipway(
     toBranch int,
     resourceID varchar(100),
     count int,
+    price long,
+    totalMoney long,
     createdDate date,
     createdBy int
 );
@@ -242,15 +246,18 @@ for each row
 begin
 	if( NEW.resourceID like 'MTL%') then
 		
-        update material_branch mb set count = count + NEW.count
+        update material_branch mb 
+        set count = count + NEW.count
         where mb.branch = 1 
         and exists(select * from material m where m.materialID = NEW.resourceID and m.id = mb.material);
 		
-        update material m set count = count + NEW.count
+        update material m 
+        set count = count + NEW.count, price = new.price
         where m.materialID = NEW.resourceID;        
 	else
     
-		update equipment e set status = 1
+		update equipment e 
+        set status = 1, price = new.price
         where e.equipmentID = new.resourceID;
 	end if;
 end;

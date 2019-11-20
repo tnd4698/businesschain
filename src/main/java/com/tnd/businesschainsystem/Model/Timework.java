@@ -61,4 +61,8 @@ public class Timework {
         this.employee = timeworkDTO.getEmployeeId();
         this.status = timeworkDTO.getStatus();
     }
+
+    public void generateId() {
+        this.id = 0;
+    }
 }

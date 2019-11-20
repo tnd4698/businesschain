@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface MaterialRepository extends CrudRepository<Material,Integer> {
 
+    @Query(value = "Select * from material where materialID = ?1",nativeQuery = true)
+    Material findByMaterialID(String resourceID);
 }

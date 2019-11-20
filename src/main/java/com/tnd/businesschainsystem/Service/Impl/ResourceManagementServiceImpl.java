@@ -114,9 +114,19 @@ public class ResourceManagementServiceImpl implements ResourceManagementService 
         try {
             Account acc = accountRepository.findByUsername(username);
             shipways.stream().forEach(shipway -> {
+
+                if(shipway.getResourceID().substring(0,3).equals("MTL")) {
+                    Material material = materialRepository.findByMaterialID(shipway.getResourceID());
+                    shipway.setPrice(material.getPrice());
+                } else {
+                    Equipment equipment = equipmentRepository.findByEquipmentID(shipway.getResourceID());
+                    shipway.setPrice(equipment.getPrice());
+                }
                 shipway.generateId();
                 shipway.setCreatedDate(new Date());
                 shipway.setCreatedBy(acc.getEmployee());
+                shipway.setPrice(shipway.getPrice());
+                shipway.setTotalMoney(shipway.getPrice() * shipway.getCount());
             });
 
             shipwayRepository.saveAll(shipways);

@@ -20,6 +20,9 @@ public class Equipment {
     @Column(name="status")
     private int status;
 
+    @Column(name="price")
+    private long price;
+
     @Column(name="branch")
     private int branch;
 
@@ -49,6 +52,14 @@ public class Equipment {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public long getPrice() {
+        return price;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
     }
 
     public int getBranch() {

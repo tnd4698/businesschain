@@ -12,6 +12,7 @@ public class ResourceDTO {
     private String resourceID;
     private String name;
     private int count;
+    private long price;
     private int status;
     private int branchId;
     private String branchName;
@@ -43,6 +44,14 @@ public class ResourceDTO {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public long getPrice() {
+        return price;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
     }
 
     public int getStatus() {
@@ -90,6 +99,7 @@ public class ResourceDTO {
         this.resourceID = material.getMaterialID();
         this.name = material.getName();
         this.count = materialBranch.getCount();
+        this.price = material.getPrice();
         this.status = 1;
         this.branchId = branch.getId();
         this.branchName = branch.getName();
@@ -102,6 +112,7 @@ public class ResourceDTO {
         this.resourceID = equipment.getEquipmentID();
         this.name = equipment.getName();
         this.count = 1;
+        this.price = equipment.getPrice();
         this.status = equipment.getStatus();
         this.branchId = branch.getId();
         this.branchName = branch.getName();

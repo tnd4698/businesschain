@@ -44,6 +44,9 @@ public class BudgetManagementServiceImpl implements BudgetManagementService {
     @Autowired
     private TuitionRepository tuitionRepository;
 
+    @Autowired
+    private ShipwayRepository shipwayRepository;
+
     @Override
     public ResponseDTO addSpend(Spend spend, String username) {
 
@@ -275,6 +278,20 @@ public class BudgetManagementServiceImpl implements BudgetManagementService {
                     br.getId());
             for(int i=0;i<spends.size();i++)
                 value -= spends.get(i).getTotalMoney();
+
+            List<Shipway> shipwayAdds = shipwayRepository.findByDurationAndToBranch(
+                    String.format("%d/%02d/01",fromYear,fromMonth),
+                    String.format("%d/%02d/%d",toYear,toMonth,lastDate),
+                    br.getId());
+            for(int i=0;i<shipwayAdds.size();i++)
+                value -= shipwayAdds.get(i).getTotalMoney();
+
+            List<Shipway> shipwayGets = shipwayRepository.findByDurationAndFromBranch(
+                    String.format("%d/%02d/01",fromYear,fromMonth),
+                    String.format("%d/%02d/%d",toYear,toMonth,lastDate),
+                    br.getId());
+            for(int i=0;i<shipwayGets.size();i++)
+                value += shipwayGets.get(i).getTotalMoney();
 
             StatisticsDTO statisticsDTO = new StatisticsDTO();
             statisticsDTO.setToDate(String.format("%d/%02d/%d",toYear,toMonth,lastDate));
