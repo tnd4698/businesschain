@@ -19,7 +19,7 @@ public class HomeController {
     }
 
     @GetMapping("/api/auth/role")
-    public ResponseEntity<?> role(){
+    public ResponseEntity<?> getRole(){
 
         return new ResponseEntity<>(SecurityContextHolder.getContext().getAuthentication()
                 .getAuthorities().toString(), HttpStatus.OK);

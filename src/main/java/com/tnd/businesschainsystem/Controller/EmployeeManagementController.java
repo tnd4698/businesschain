@@ -65,9 +65,9 @@ public class EmployeeManagementController {
     }
 
     @GetMapping("/timeworks/new")
-    public ResponseEntity<?> getNewTimeworks(@RequestParam String date, @RequestParam int branchId) {
+    public ResponseEntity<?> getNewTimeworks(@RequestParam String date, @RequestParam int branch) {
 
-        return new ResponseEntity<>(employeeManagementService.getNewTimeworks(date, branchId),HttpStatus.OK);
+        return new ResponseEntity<>(employeeManagementService.getNewTimeworks(date, branch),HttpStatus.OK);
     }
 
     @PostMapping("/timeworks")

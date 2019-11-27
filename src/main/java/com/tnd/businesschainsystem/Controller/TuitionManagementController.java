@@ -20,7 +20,7 @@ public class TuitionManagementController {
     private TuitionManagementService tuitionManagementService;
 
     @PostMapping
-    private ResponseEntity<?> add(@RequestBody TuitionDTO tuitionDTO) {
+    private ResponseEntity<?> addTuition(@RequestBody TuitionDTO tuitionDTO) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return new ResponseEntity<>(tuitionManagementService.add(tuitionDTO,auth.getName()), HttpStatus.OK);

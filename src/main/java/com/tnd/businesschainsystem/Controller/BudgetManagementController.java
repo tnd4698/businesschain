@@ -43,16 +43,16 @@ public class BudgetManagementController {
     }
 
     @GetMapping("/report/sales")
-    public ResponseEntity<?> getSales(@RequestParam(defaultValue = "01/11/2019") String fromDate,
-                                      @RequestParam(defaultValue = "31/11/2019") String toDate,
+    public ResponseEntity<?> getReportSales(@RequestParam(defaultValue = "2019/11/01") String fromDate,
+                                      @RequestParam(defaultValue = "2019/11/30") String toDate,
                                       @RequestParam(defaultValue = "null",required = false) String branch) {
 
         return new ResponseEntity<>(budgetManagementService.getReportSales(fromDate,toDate,branch),HttpStatus.OK);
     }
 
     @GetMapping("/report/teaching")
-    public ResponseEntity<?> getReportTeaching(@RequestParam(defaultValue = "01/11/2019") String fromDate,
-                                      @RequestParam(defaultValue = "31/11/2019") String toDate,
+    public ResponseEntity<?> getReportTeaching(@RequestParam(defaultValue = "2019/11/01") String fromDate,
+                                      @RequestParam(defaultValue = "2019/11/30") String toDate,
                                       @RequestParam(defaultValue = "null",required = false) String branch) {
 
         return new ResponseEntity<>(budgetManagementService.getReportTeaching(fromDate,toDate,branch),HttpStatus.OK);
