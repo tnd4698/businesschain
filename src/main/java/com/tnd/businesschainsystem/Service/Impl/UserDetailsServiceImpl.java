@@ -1,11 +1,7 @@
 package com.tnd.businesschainsystem.Service.Impl;
 
-import com.tnd.businesschainsystem.Model.Account;
-import com.tnd.businesschainsystem.Model.EmployeeRole;
-import com.tnd.businesschainsystem.Model.Role;
-import com.tnd.businesschainsystem.Repository.AccountRepository;
-import com.tnd.businesschainsystem.Repository.EmployeeRoleRepository;
-import com.tnd.businesschainsystem.Repository.RoleRepository;
+import com.tnd.businesschainsystem.Model.*;
+import com.tnd.businesschainsystem.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -31,6 +27,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+    @Autowired
+    private BranchRepository branchRepository;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -49,5 +51,22 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User principal = new User(username, acc.getPassword(), true, true, true, true, list);
 
         return principal;
+    }
+
+    public EmployeeDTO getCurrentUserID(String username) {
+
+        Account acc = accountRepository.findByUsername(username);
+        Employee employee = employeeRepository.findById(acc.getEmployee()).get();
+        Branch branch = branchRepository.findById(employee.getBranch()).get();
+        Role role = null;
+        List<EmployeeRole> employeeRoles = employeeRoleRepository.findByEmployeeId(employee.getId());
+        if(employeeRoles.size()>0){
+            role = roleRepository.findById(employeeRoles.get(0).getRole()).get();
+        }
+
+        EmployeeDTO employeeDTO = new EmployeeDTO();
+        employeeDTO.doMappingEmployee(employee, role, branch);
+
+        return employeeDTO;
     }
 }
