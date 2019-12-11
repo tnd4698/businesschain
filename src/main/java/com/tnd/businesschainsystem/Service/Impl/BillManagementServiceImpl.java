@@ -42,7 +42,7 @@ public class BillManagementServiceImpl implements BillManagementService {
             for (Bill item : listBill) {
 
                 Bill bill = new Bill();
-                bill.setItemMenu(item.getId());
+                bill.setItemMenu(item.getItemMenu());
                 bill.setBranch(branch.getId());
                 bill.setCount(item.getCount());
                 bill.setPrice(item.getPrice());

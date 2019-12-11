@@ -25,7 +25,7 @@ create table employee(
     employeeID varchar(64),
     name varchar(64),
     cardID varchar(16),
-    birthDay date,
+    birthDay varchar(16),
     gender int, /* 0: nữ, 1: nam */
     address varchar(100),
     phoneNumber varchar(16),
@@ -153,7 +153,7 @@ create table student(
     studentID varchar(64),
     name varchar(64),
     cardID varchar(16),
-    birthDay date,
+    birthDay varchar(16),
     gender int, /* 0: nữ, 1: nam */
     address varchar(100),
     phoneNumber varchar(16),

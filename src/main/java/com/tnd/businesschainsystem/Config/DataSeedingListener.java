@@ -896,6 +896,12 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             manager1.setBranch(br1.getId());
             manager1.setStatus(1);
             manager1.setSalary(4000000);
+            manager1.setAddress("Tan Binh, Ho Chi Minh, VN");
+            manager1.setBirthDay("04/06/1998");
+            manager1.setCardID("215438985");
+            manager1.setEmail("tannguyenduy98@gmail.com");
+            manager1.setGender(0);
+            manager1.setPhoneNumber("0978301442");
             employeeRepository.save(manager1);
 
             EmployeeRole employeeRole1 = new EmployeeRole();
@@ -917,6 +923,12 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             manager2.setBranch(br2.getId());
             manager2.setStatus(1);
             manager2.setSalary(4000000);
+            manager2.setAddress("Tan Binh, Ho Chi Minh, VN");
+            manager2.setBirthDay("04/06/1998");
+            manager2.setCardID("215438985");
+            manager2.setEmail("tannguyenduy98@gmail.com");
+            manager2.setGender(0);
+            manager2.setPhoneNumber("0978301442");
             employeeRepository.save(manager2);
 
             EmployeeRole employeeRole2 = new EmployeeRole();
@@ -938,6 +950,12 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             manager3.setBranch(br3.getId());
             manager3.setStatus(1);
             manager3.setSalary(4000000);
+            manager3.setAddress("Tan Binh, Ho Chi Minh, VN");
+            manager3.setBirthDay("04/06/1998");
+            manager3.setCardID("215438985");
+            manager3.setEmail("tannguyenduy98@gmail.com");
+            manager3.setGender(0);
+            manager3.setPhoneNumber("0978301442");
             employeeRepository.save(manager3);
 
             EmployeeRole employeeRole3 = new EmployeeRole();
@@ -959,6 +977,12 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             manager4.setBranch(br4.getId());
             manager4.setStatus(1);
             manager4.setSalary(4000000);
+            manager4.setAddress("Tan Binh, Ho Chi Minh, VN");
+            manager4.setBirthDay("04/06/1998");
+            manager4.setCardID("215438985");
+            manager4.setEmail("tannguyenduy98@gmail.com");
+            manager4.setGender(0);
+            manager4.setPhoneNumber("0978301442");
             employeeRepository.save(manager4);
 
             EmployeeRole employeeRole4 = new EmployeeRole();
@@ -980,6 +1004,12 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             manager5.setBranch(br5.getId());
             manager5.setStatus(1);
             manager5.setSalary(4000000);
+            manager5.setAddress("Tan Binh, Ho Chi Minh, VN");
+            manager5.setBirthDay("04/06/1998");
+            manager5.setCardID("215438985");
+            manager5.setEmail("tannguyenduy98@gmail.com");
+            manager5.setGender(0);
+            manager5.setPhoneNumber("0978301442");
             employeeRepository.save(manager5);
 
             EmployeeRole employeeRole5 = new EmployeeRole();
@@ -1001,6 +1031,12 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             manager6.setBranch(br6.getId());
             manager6.setStatus(1);
             manager6.setSalary(4000000);
+            manager6.setAddress("Tan Binh, Ho Chi Minh, VN");
+            manager6.setBirthDay("04/06/1998");
+            manager6.setCardID("215438985");
+            manager6.setEmail("tannguyenduy98@gmail.com");
+            manager6.setGender(0);
+            manager6.setPhoneNumber("0978301442");
             employeeRepository.save(manager6);
 
             EmployeeRole employeeRole6 = new EmployeeRole();
@@ -1022,6 +1058,12 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             manager7.setBranch(br7.getId());
             manager7.setStatus(1);
             manager7.setSalary(4000000);
+            manager7.setAddress("Tan Binh, Ho Chi Minh, VN");
+            manager7.setBirthDay("04/06/1998");
+            manager7.setCardID("215438985");
+            manager7.setEmail("tannguyenduy98@gmail.com");
+            manager7.setGender(0);
+            manager7.setPhoneNumber("0978301442");
             employeeRepository.save(manager7);
 
             EmployeeRole employeeRole7 = new EmployeeRole();
@@ -1043,6 +1085,12 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             manager8.setBranch(br8.getId());
             manager8.setStatus(1);
             manager8.setSalary(4000000);
+            manager8.setAddress("Tan Binh, Ho Chi Minh, VN");
+            manager8.setBirthDay("04/06/1998");
+            manager8.setCardID("215438985");
+            manager8.setEmail("tannguyenduy98@gmail.com");
+            manager8.setGender(0);
+            manager8.setPhoneNumber("0978301442");
             employeeRepository.save(manager8);
 
             EmployeeRole employeeRole8 = new EmployeeRole();
@@ -1064,6 +1112,12 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             manager9.setBranch(br9.getId());
             manager9.setStatus(1);
             manager9.setSalary(4000000);
+            manager9.setAddress("Tan Binh, Ho Chi Minh, VN");
+            manager9.setBirthDay("04/06/1998");
+            manager9.setCardID("215438985");
+            manager9.setEmail("tannguyenduy98@gmail.com");
+            manager9.setGender(0);
+            manager9.setPhoneNumber("0978301442");
             employeeRepository.save(manager9);
 
             EmployeeRole employeeRole9 = new EmployeeRole();
@@ -1085,6 +1139,12 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             manager10.setBranch(br10.getId());
             manager10.setStatus(1);
             manager10.setSalary(4000000);
+            manager10.setAddress("Tan Binh, Ho Chi Minh, VN");
+            manager10.setBirthDay("04/06/1998");
+            manager10.setCardID("215438985");
+            manager10.setEmail("tannguyenduy98@gmail.com");
+            manager10.setGender(0);
+            manager10.setPhoneNumber("0978301442");
             employeeRepository.save(manager10);
 
             EmployeeRole employeeRole10 = new EmployeeRole();
@@ -1106,6 +1166,12 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             business.setBranch(origin.getId());
             business.setStatus(1);
             business.setSalary(1000000);
+            business.setAddress("Tan Binh, Ho Chi Minh, VN");
+            business.setBirthDay("04/06/1998");
+            business.setCardID("215438985");
+            business.setEmail("tannguyenduy98@gmail.com");
+            business.setGender(0);
+            business.setPhoneNumber("0978301442");
             employeeRepository.save(business);
 
             EmployeeRole employeeRolebusinessManager = new EmployeeRole();
@@ -1127,6 +1193,12 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             accountant.setBranch(origin.getId());
             accountant.setStatus(1);
             accountant.setSalary(1000000);
+            accountant.setAddress("Tan Binh, Ho Chi Minh, VN");
+            accountant.setBirthDay("04/06/1998");
+            accountant.setCardID("215438985");
+            accountant.setEmail("tannguyenduy98@gmail.com");
+            accountant.setGender(0);
+            accountant.setPhoneNumber("0978301442");
             employeeRepository.save(accountant);
 
             EmployeeRole employeeRoleAccount = new EmployeeRole();
@@ -1213,6 +1285,57 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             shift14.setTime("Ca 2");
             shiftRepository.save(shift14);
 
+            //student
+            Student student1 = new Student();
+            student1.generateID(((List<Student>)studentRepository.findAll()).size()+1);
+            student1.setName("Nguyen Van A");
+            student1.setBranch(br1.getId());
+            student1.setAddress("Tan Binh, Ho Chi Minh, VN");
+            student1.setBirthDay("04/06/1998");
+            student1.setCardID("215438985");
+            student1.setEmail("tannguyenduy98@gmail.com");
+            student1.setGender(0);
+            student1.setStatus(1);
+            student1.setPhoneNumber("0978301442");
+            studentRepository.save(student1);
+
+            // teacher
+            Employee teacher1 = new Employee();
+            teacher1.generateID(((List<Employee>)employeeRepository.findAll()).size()+1);
+            teacher1.setName("Pham B B");
+            teacher1.setBranch(br1.getId());
+            teacher1.setStatus(1);
+            teacher1.setSalary(4000000);
+            teacher1.setAddress("Tan Binh, Ho Chi Minh, VN");
+            teacher1.setBirthDay("04/06/1998");
+            teacher1.setCardID("215438985");
+            teacher1.setEmail("tannguyenduy98@gmail.com");
+            teacher1.setGender(0);
+            teacher1.setPhoneNumber("0978301442");
+            employeeRepository.save(teacher1);
+
+            EmployeeRole employeeRolet1 = new EmployeeRole();
+            employeeRolet1.setEmployee(teacher1.getId());
+            employeeRolet1.setRole(role_teacher.getId());
+            employeeRoleRepository.save(employeeRolet1);
+
+            // class
+            Classs classs1 = new Classs();
+            classs1.generateID(((List<Classs>)classRepository.findAll()).size()+1);
+            classs1.setBranch(br1.getId());
+            classs1.setFromDate("2019/01/22");
+            classs1.setToDate("2019/02/22");
+            classs1.setStatus(1);
+            classs1.setTeacher(teacher1.getId());
+            classRepository.save(classs1);
+
+            //student class
+            StudentClass studentClass1= new StudentClass();
+            studentClass1.setClasss(classs1.getId());
+            studentClass1.setStudent(student1.getId());
+            studentClass1.setStatus(1);
+            studentClass1.setStatusTuition(0);
+            studentClassRepository.save(studentClass1);
         }
     }
 
