@@ -95,6 +95,8 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             Branch origin = new Branch();
             origin.setName("Cơ sở chính");
             origin.setManager(2);
+            origin.setAddress("Tan Phu, HCM");
+            origin.setStatus(1);
             origin.setOpenDate(new Date());
             branchRepository.save(origin);
 
@@ -102,60 +104,80 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             br1.setName("Cơ sở 1");
             br1.setManager(3);
             br1.setOpenDate(new Date());
+            br1.setAddress("Tan Phu, HCM");
+            br1.setStatus(1);
             branchRepository.save(br1);
 
             Branch br2 = new Branch();
             br2.setName("Cơ sở 2");
             br2.setManager(4);
             br2.setOpenDate(new Date());
+            br2.setAddress("Tan Phu, HCM");
+            br2.setStatus(1);
             branchRepository.save(br2);
 
             Branch br3 = new Branch();
             br3.setName("Cơ sở 3");
             br3.setManager(5);
             br3.setOpenDate(new Date());
+            br3.setAddress("Tan Phu, HCM");
+            br3.setStatus(1);
             branchRepository.save(br3);
 
             Branch br4 = new Branch();
             br4.setName("Cơ sở 4");
             br4.setManager(6);
             br4.setOpenDate(new Date());
+            br4.setAddress("Tan Phu, HCM");
+            br4.setStatus(1);
             branchRepository.save(br4);
 
             Branch br5 = new Branch();
             br5.setName("Cơ sở 5");
             br5.setManager(7);
             br5.setOpenDate(new Date());
+            br5.setAddress("Tan Phu, HCM");
+            br5.setStatus(1);
             branchRepository.save(br5);
 
             Branch br6 = new Branch();
             br6.setName("Cơ sở 6");
             br6.setManager(8);
             br6.setOpenDate(new Date());
+            br6.setAddress("Tan Phu, HCM");
+            br6.setStatus(1);
             branchRepository.save(br6);
 
             Branch br7 = new Branch();
             br7.setName("Cơ sở 7");
             br7.setManager(9);
             br7.setOpenDate(new Date());
+            br7.setAddress("Tan Phu, HCM");
+            br7.setStatus(1);
             branchRepository.save(br7);
 
             Branch br8 = new Branch();
             br8.setName("Cơ sở 8");
             br8.setManager(10);
             br8.setOpenDate(new Date());
+            br8.setAddress("Tan Phu, HCM");
+            br8.setStatus(1);
             branchRepository.save(br8);
 
             Branch br9 = new Branch();
             br9.setName("Cơ sở 9");
             br9.setManager(11);
             br9.setOpenDate(new Date());
+            br9.setAddress("Tan Phu, HCM");
+            br9.setStatus(1);
             branchRepository.save(br9);
 
             Branch br10 = new Branch();
             br10.setName("Cơ sở 10");
             br10.setManager(12);
             br10.setOpenDate(new Date());
+            br10.setAddress("Tan Phu, HCM");
+            br10.setStatus(1);
             branchRepository.save(br10);
 
             // rule br1
