@@ -71,13 +71,13 @@ public class EmployeeManagementController {
     }
 
     @PostMapping("/timeworks")
-    public ResponseEntity<?> addTimeworks(@RequestBody List<Timework> timeworks) {
+    public ResponseEntity<?> addTimeworks(@RequestBody List<TimeworkDTO> timeworks) {
 
         return new ResponseEntity<>(employeeManagementService.addTimeworks(timeworks),HttpStatus.OK);
     }
 
     @PutMapping("/timeworks")
-    public ResponseEntity<?> updateTimeworks(@RequestBody List<Timework> timeworks) {
+    public ResponseEntity<?> updateTimeworks(@RequestBody List<TimeworkDTO> timeworks) {
 
         return new ResponseEntity<>(employeeManagementService.updateTimeworks(timeworks),HttpStatus.OK);
     }

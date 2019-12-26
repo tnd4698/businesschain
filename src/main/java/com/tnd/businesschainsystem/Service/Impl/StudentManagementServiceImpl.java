@@ -3,10 +3,7 @@ package com.tnd.businesschainsystem.Service.Impl;
 import com.tnd.businesschainsystem.Bean.ResponseDTO;
 import com.tnd.businesschainsystem.Message.Constants;
 import com.tnd.businesschainsystem.Model.*;
-import com.tnd.businesschainsystem.Repository.BranchRepository;
-import com.tnd.businesschainsystem.Repository.ClassRepository;
-import com.tnd.businesschainsystem.Repository.StudentClassRepository;
-import com.tnd.businesschainsystem.Repository.StudentRepository;
+import com.tnd.businesschainsystem.Repository.*;
 import com.tnd.businesschainsystem.Service.StudentManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +26,12 @@ public class StudentManagementServiceImpl implements StudentManagementService {
     @Autowired
     private ClassRepository classRepository;
 
+    @Autowired
+    private AccountRepository accountRepository;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
     @Override
     public List<StudentDTO> getStudents(String branch, String tuition, String status) {
 
@@ -48,7 +51,7 @@ public class StudentManagementServiceImpl implements StudentManagementService {
 
                 if (!tuition.equals("null") && studentClass.getStatusTuition() != Integer.parseInt(tuition))
                     continue;
-                Classs classs = classRepository.findById(studentClass.getId()).get();
+                Classs classs = classRepository.findById(studentClass.getClasss()).get();
                 StudentDTO studentDTO = new StudentDTO();
                 studentDTO.doMappingStudent(student, studentClass, classs, br);
                 list.add(studentDTO);
@@ -56,6 +59,7 @@ public class StudentManagementServiceImpl implements StudentManagementService {
             else {
                 StudentDTO studentDTO = new StudentDTO();
                 studentDTO.doMappingStudent(student, null, null, br);
+                studentDTO.setStatusTuition(-1);
                 list.add(studentDTO);
             }
         }
@@ -63,9 +67,11 @@ public class StudentManagementServiceImpl implements StudentManagementService {
     }
 
     @Override
-    public ResponseDTO add(StudentDTO studentDTO) {
+    public ResponseDTO add(String username, StudentDTO studentDTO) {
 
         try {
+            Account acc = accountRepository.findByUsername(username);
+            studentDTO.setBranchId(employeeRepository.findById(acc.getEmployee()).get().getBranch());
             Student student = new Student();
             student.generateID(((List<Student>)studentRepository.findAll()).size() + 1);
             student.doMappingStudentDTO(studentDTO);

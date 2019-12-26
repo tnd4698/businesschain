@@ -62,6 +62,7 @@ create table timework(
 	id int not null auto_increment primary key,
     date date,
     employee int,
+    branch int,
     status int     /* 0: false, 1: true */
 );
 
@@ -277,3 +278,4 @@ begin
 end;
 |
 DELIMITER ;
+

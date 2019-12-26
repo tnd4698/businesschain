@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -99,6 +100,7 @@ public class EmployeeManagementServiceImpl implements EmployeeManagementService 
         try {
             Account acc = accountRepository.findByUsername(username);
             employee.setCreatedBy(acc.getEmployee());
+            employee.setCreatedDate(new Date());
             Employee empl = new Employee();
             empl.generateID(((List<Employee>)employeeRepository.findAll()).size() + 1);
             empl.doMappingEmployeeDTO(employee);
@@ -133,6 +135,7 @@ public class EmployeeManagementServiceImpl implements EmployeeManagementService 
             Account acc = accountRepository.findByUsername(username);
             Employee empl = employeeRepository.findByEmployeeID(employeeID);
             employee.setUpdatedBy(acc.getEmployee());
+            employee.setUpdatedDate(new Date());
             empl.doMappingEmployeeDTO(employee);
             employeeRepository.save(empl);
 
@@ -159,6 +162,7 @@ public class EmployeeManagementServiceImpl implements EmployeeManagementService 
                 if(account != null)
                     account.setStatus(0);
             }
+            if(account!=null)
             accountRepository.save(account);
 
             return new ResponseDTO().success(Constants.DONE_UPDATEEMPLOYEE);
@@ -179,11 +183,11 @@ public class EmployeeManagementServiceImpl implements EmployeeManagementService 
             Branch br = branchRepository.findById(employee.getBranch()).get();
             if(!branch.equals("null") && br.getId()!=Integer.parseInt(branch))
                 continue;
-            TimeworkList TimeworkList = new TimeworkList();
-            TimeworkList.setDate(timeworks.get(i).getDate());
-            TimeworkList.setBranchId(br.getId());
-            TimeworkList.setBranchName(br.getName());
-            list.add(TimeworkList);
+            TimeworkList timeworkList = new TimeworkList();
+            timeworkList.setDate(timeworks.get(i).getDate());
+            timeworkList.setBranchId(br.getId());
+            timeworkList.setBranchName(br.getName());
+            list.add(timeworkList);
         }
         return list;
     }
@@ -193,29 +197,32 @@ public class EmployeeManagementServiceImpl implements EmployeeManagementService 
 
         List<TimeworkDTO> list = new ArrayList<>();
         List<Timework> timeworks = timeworkRepository.findTimeworkByDuration(date,date);
-        if(timeworks.size() == 0) {
 
-            List<Employee> employees = employeeRepository.findByBranchId(branchId);
-            for(Employee employee : employees) {
 
-                TimeworkDTO timeworkDTO = new TimeworkDTO();
-                timeworkDTO.setDate(date);
-                timeworkDTO.setEmployeeName(employee.getName());
-                timeworkDTO.setStatus(1);
-                list.add(timeworkDTO);
-            }
+        List<Employee> employees = employeeRepository.findByBranchId(branchId);
+        for(Employee employee : employees) {
+
+            TimeworkDTO timeworkDTO = new TimeworkDTO();
+            timeworkDTO.setDate(date);
+            timeworkDTO.setEmployeeName(employee.getName());
+            timeworkDTO.setStatus(1);
+            timeworkDTO.setEmployeeID(employee.getEmployeeID());
+            timeworkDTO.setEmployeeId(employee.getId());
+            timeworkDTO.setBranchId(branchId);
+            list.add(timeworkDTO);
         }
         return list;
     }
 
     @Override
-    public ResponseDTO addTimeworks(List<Timework> timeworks) {
+    public ResponseDTO addTimeworks(List<TimeworkDTO> timeworks) {
 
         try{
 
-            for(Timework timework : timeworks) {
-                timework.generateId();
-                timeworkRepository.save(timework);
+            for(TimeworkDTO timework : timeworks) {
+                Timework t = new Timework();
+                t.doMappingTimeworkDTO(timework);
+                timeworkRepository.save(t);
             }
             return new ResponseDTO().success(Constants.DONE_ADDTIMEWORK);
         } catch (Exception e) {
@@ -224,14 +231,18 @@ public class EmployeeManagementServiceImpl implements EmployeeManagementService 
     }
 
     @Override
-    public ResponseDTO updateTimeworks(List<Timework> timeworks) {
+    public ResponseDTO updateTimeworks(List<TimeworkDTO> timeworks) {
 
         try{
-
-            for(Timework timework : timeworks)
-                if(!timeworkRepository.existsById(timework.getId()))
+            List<Timework> list = new ArrayList<>();
+            for(TimeworkDTO timework : timeworks) {
+                if (!timeworkRepository.existsById(timework.getId()))
                     return new ResponseDTO().fail(Constants.FAIL_UPDATETIMEWORK);
-            timeworkRepository.saveAll(timeworks);
+                Timework t = new Timework();
+                t.doMappingTimeworkDTO(timework);
+                list.add(t);
+            }
+            timeworkRepository.saveAll(list);
             return new ResponseDTO().success(Constants.DONE_UPDATETIMEWORK);
         } catch (Exception e) {
             return new ResponseDTO().fail(Constants.FAIL_UPDATETIMEWORK);

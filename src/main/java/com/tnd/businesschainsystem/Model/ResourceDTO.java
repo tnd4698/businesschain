@@ -88,7 +88,7 @@ public class ResourceDTO {
 
     public static String generateID(ResourceDTO resourceDTO){
         String rs = resourceDTO.getType()==MATERIAL?"MTL":"EQT";
-        rs+= (new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")).format(new Date()).replace('/','0')
+        rs+= (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date()).replace('/','0')
                 .replace(':','0').replace(' ','0');
         return rs;
     }

@@ -98,6 +98,19 @@ public class BranchManagementServiceImpl implements BranchManagementService {
             Branch branch = branchRepository.findById(branchId).get();
             branch.doMappingBranchDTO(branchDTO);
             branchRepository.save(branch);
+
+            List<Rule> oldRules = ruleRepository.findByBranchId(branchId);
+            for(int i=0;i<oldRules.size();i++)
+                for(int j=0;j<branchDTO.getRules().size();j++) {
+                    if(oldRules.get(i).getId() == branchDTO.getRules().get(j).getId()){
+                        ruleRepository.save(branchDTO.getRules().get(j));
+                        oldRules.remove(i);
+                        branchDTO.getRules().remove(j);
+                        i--;
+                        break;
+                    }
+                }
+            ruleRepository.deleteAll(oldRules);
             ruleRepository.saveAll(branchDTO.getRules());
 
             return new ResponseDTO().success(Constants.DONE_UPDATEBRANCH);

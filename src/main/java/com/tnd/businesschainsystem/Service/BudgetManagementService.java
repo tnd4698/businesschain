@@ -2,6 +2,7 @@ package com.tnd.businesschainsystem.Service;
 
 import com.tnd.businesschainsystem.Bean.ResponseDTO;
 import com.tnd.businesschainsystem.Model.Payroll;
+import com.tnd.businesschainsystem.Model.PayrollDTO;
 import com.tnd.businesschainsystem.Model.Spend;
 import com.tnd.businesschainsystem.Model.StatisticsDTO;
 
@@ -11,7 +12,7 @@ public interface BudgetManagementService {
 
     ResponseDTO addSpend(Spend spend, String username);
 
-    List<Payroll> getPayrolls(int month, int year, String branch, String role);
+    List<PayrollDTO> getPayrolls(int month, int year, String branch, String role);
 
     ResponseDTO addPayrolls(List<Payroll> payrolls, String username);
 

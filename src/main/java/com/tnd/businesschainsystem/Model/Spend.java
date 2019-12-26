@@ -54,13 +54,13 @@ public class Spend {
     }
 
     public String getCreatedDate() {
-        return (new SimpleDateFormat("yyyy/MM/dd")).format(this.createdDate);
+        return (new SimpleDateFormat("yyyy-MM-dd")).format(this.createdDate);
     }
 
     public void setCreatedDate(String date) {
 
         try {
-            this.createdDate = (new SimpleDateFormat("yyyy/MM/dd")).parse(date);
+            this.createdDate = (new SimpleDateFormat("yyyy-MM-dd")).parse(date);
         } catch (ParseException e) {
             System.out.println("Exception : " + e);
         }

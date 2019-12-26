@@ -70,13 +70,13 @@ public class Branch {
     }
 
     public String getOpenDate() {
-        return (new SimpleDateFormat("yyyy/MM/dd")).format(this.openDate);
+        return (new SimpleDateFormat("yyyy-MM-dd")).format(this.openDate);
     }
 
     public void setOpenDate(String date) {
 
         try {
-            this.openDate = (new SimpleDateFormat("yyyy/MM/dd")).parse(date);
+            this.openDate = (new SimpleDateFormat("yyyy-MM-dd")).parse(date);
         } catch (ParseException e) {
             System.out.println("Exception : " + e);
         }

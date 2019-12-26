@@ -919,7 +919,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             manager1.setStatus(1);
             manager1.setSalary(4000000);
             manager1.setAddress("Tan Binh, Ho Chi Minh, VN");
-            manager1.setBirthDay("04/06/1998");
+            manager1.setBirthDay("1998-06-04");
             manager1.setCardID("215438985");
             manager1.setEmail("tannguyenduy98@gmail.com");
             manager1.setGender(0);
@@ -946,7 +946,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             manager2.setStatus(1);
             manager2.setSalary(4000000);
             manager2.setAddress("Tan Binh, Ho Chi Minh, VN");
-            manager2.setBirthDay("04/06/1998");
+            manager2.setBirthDay("1998-06-04");
             manager2.setCardID("215438985");
             manager2.setEmail("tannguyenduy98@gmail.com");
             manager2.setGender(0);
@@ -973,7 +973,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             manager3.setStatus(1);
             manager3.setSalary(4000000);
             manager3.setAddress("Tan Binh, Ho Chi Minh, VN");
-            manager3.setBirthDay("04/06/1998");
+            manager3.setBirthDay("1998-06-04");
             manager3.setCardID("215438985");
             manager3.setEmail("tannguyenduy98@gmail.com");
             manager3.setGender(0);
@@ -1000,7 +1000,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             manager4.setStatus(1);
             manager4.setSalary(4000000);
             manager4.setAddress("Tan Binh, Ho Chi Minh, VN");
-            manager4.setBirthDay("04/06/1998");
+            manager4.setBirthDay("1998-06-04");
             manager4.setCardID("215438985");
             manager4.setEmail("tannguyenduy98@gmail.com");
             manager4.setGender(0);
@@ -1027,7 +1027,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             manager5.setStatus(1);
             manager5.setSalary(4000000);
             manager5.setAddress("Tan Binh, Ho Chi Minh, VN");
-            manager5.setBirthDay("04/06/1998");
+            manager5.setBirthDay("1998-06-04");
             manager5.setCardID("215438985");
             manager5.setEmail("tannguyenduy98@gmail.com");
             manager5.setGender(0);
@@ -1054,7 +1054,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             manager6.setStatus(1);
             manager6.setSalary(4000000);
             manager6.setAddress("Tan Binh, Ho Chi Minh, VN");
-            manager6.setBirthDay("04/06/1998");
+            manager6.setBirthDay("1998-06-04");
             manager6.setCardID("215438985");
             manager6.setEmail("tannguyenduy98@gmail.com");
             manager6.setGender(0);
@@ -1081,7 +1081,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             manager7.setStatus(1);
             manager7.setSalary(4000000);
             manager7.setAddress("Tan Binh, Ho Chi Minh, VN");
-            manager7.setBirthDay("04/06/1998");
+            manager7.setBirthDay("1998-06-04");
             manager7.setCardID("215438985");
             manager7.setEmail("tannguyenduy98@gmail.com");
             manager7.setGender(0);
@@ -1108,7 +1108,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             manager8.setStatus(1);
             manager8.setSalary(4000000);
             manager8.setAddress("Tan Binh, Ho Chi Minh, VN");
-            manager8.setBirthDay("04/06/1998");
+            manager8.setBirthDay("1998-06-04");
             manager8.setCardID("215438985");
             manager8.setEmail("tannguyenduy98@gmail.com");
             manager8.setGender(0);
@@ -1135,7 +1135,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             manager9.setStatus(1);
             manager9.setSalary(4000000);
             manager9.setAddress("Tan Binh, Ho Chi Minh, VN");
-            manager9.setBirthDay("04/06/1998");
+            manager9.setBirthDay("1998-06-04");
             manager9.setCardID("215438985");
             manager9.setEmail("tannguyenduy98@gmail.com");
             manager9.setGender(0);
@@ -1162,7 +1162,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             manager10.setStatus(1);
             manager10.setSalary(4000000);
             manager10.setAddress("Tan Binh, Ho Chi Minh, VN");
-            manager10.setBirthDay("04/06/1998");
+            manager10.setBirthDay("1998-06-04");
             manager10.setCardID("215438985");
             manager10.setEmail("tannguyenduy98@gmail.com");
             manager10.setGender(0);
@@ -1189,7 +1189,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             business.setStatus(1);
             business.setSalary(1000000);
             business.setAddress("Tan Binh, Ho Chi Minh, VN");
-            business.setBirthDay("04/06/1998");
+            business.setBirthDay("1998-06-04");
             business.setCardID("215438985");
             business.setEmail("tannguyenduy98@gmail.com");
             business.setGender(0);
@@ -1207,7 +1207,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             accOrigin.setEmployee(business.getId());
             accOrigin.setStatus(1);
             accountRepository.save(accOrigin);
-            
+
             //employee accountant
             Employee accountant = new Employee();
             accountant.generateID(((List<Employee>)employeeRepository.findAll()).size()+1);
@@ -1216,7 +1216,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             accountant.setStatus(1);
             accountant.setSalary(1000000);
             accountant.setAddress("Tan Binh, Ho Chi Minh, VN");
-            accountant.setBirthDay("04/06/1998");
+            accountant.setBirthDay("1998-06-04");
             accountant.setCardID("215438985");
             accountant.setEmail("tannguyenduy98@gmail.com");
             accountant.setGender(0);
@@ -1313,7 +1313,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             student1.setName("Nguyen Van A");
             student1.setBranch(br1.getId());
             student1.setAddress("Tan Binh, Ho Chi Minh, VN");
-            student1.setBirthDay("04/06/1998");
+            student1.setBirthDay("1998-06-04");
             student1.setCardID("215438985");
             student1.setEmail("tannguyenduy98@gmail.com");
             student1.setGender(0);
@@ -1329,7 +1329,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             teacher1.setStatus(1);
             teacher1.setSalary(4000000);
             teacher1.setAddress("Tan Binh, Ho Chi Minh, VN");
-            teacher1.setBirthDay("04/06/1998");
+            teacher1.setBirthDay("1998-06-04");
             teacher1.setCardID("215438985");
             teacher1.setEmail("tannguyenduy98@gmail.com");
             teacher1.setGender(0);
@@ -1345,8 +1345,8 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             Classs classs1 = new Classs();
             classs1.generateID(((List<Classs>)classRepository.findAll()).size()+1);
             classs1.setBranch(br1.getId());
-            classs1.setFromDate("2019/01/22");
-            classs1.setToDate("2019/02/22");
+            classs1.setFromDate("2019-01-22");
+            classs1.setToDate("2019-02-22");
             classs1.setStatus(1);
             classs1.setTeacher(teacher1.getId());
             classRepository.save(classs1);
@@ -1358,6 +1358,28 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             studentClass1.setStatus(1);
             studentClass1.setStatusTuition(0);
             studentClassRepository.save(studentClass1);
+
+            //resource
+            Material material1 = new Material();
+            material1.setCount(100);
+            material1.setPrice(100000);
+            material1.setMaterialID("MTL3949347165892");
+            material1.setName("cafe trung nguyên");
+            materialRepository.save(material1);
+            materialRepository.save(material1);
+
+            MaterialBranch materialBranch1 = materialBranchRepository.findByMaterialIdAndBranchId(material1.getId(),origin.getId());
+            materialBranch1.setCount(100);
+            materialBranchRepository.save(materialBranch1);
+
+            // equipment
+            Equipment equipment1 = new Equipment();
+            equipment1.setStatus(1);
+            equipment1.setBranch(origin.getId());
+            equipment1.setEquipmentID("EQT987342389429834");
+            equipment1.setName("Màn hình LG239");
+            equipment1.setPrice(20000000);
+            equipmentRepository.save(equipment1);
         }
     }
 

@@ -23,9 +23,9 @@ public interface EmployeeManagementService {
 
     List<TimeworkDTO> getNewTimeworks(String date, int branchId);
 
-    ResponseDTO addTimeworks(List<Timework> timeworks);
+    ResponseDTO addTimeworks(List<TimeworkDTO> timeworks);
 
-    ResponseDTO updateTimeworks(List<Timework> timeworks);
+    ResponseDTO updateTimeworks(List<TimeworkDTO> timeworks);
 
     List<TimeworkDTO> getTimeworks(String date, String branch);
 }

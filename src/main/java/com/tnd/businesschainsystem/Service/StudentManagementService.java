@@ -9,7 +9,7 @@ public interface StudentManagementService {
 
     List<StudentDTO> getStudents(String branch, String tuition, String status);
 
-    ResponseDTO add(StudentDTO studentDTO);
+    ResponseDTO add(String username,StudentDTO studentDTO);
 
     ResponseDTO update(String studentID, StudentDTO studentDTO);
 }

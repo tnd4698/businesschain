@@ -6,6 +6,7 @@ import com.tnd.businesschainsystem.Model.*;
 import com.tnd.businesschainsystem.Repository.*;
 import com.tnd.businesschainsystem.Service.BudgetManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -64,7 +65,7 @@ public class BudgetManagementServiceImpl implements BudgetManagementService {
     }
 
     @Override
-    public List<Payroll> getPayrolls(int month, int year, String branch, String role) {
+    public List<PayrollDTO> getPayrolls(int month, int year, String branch, String role) {
 
         if(payrollRepository.findByMonthAndYear(month,year).size() > 0) {
             List<Payroll> payrolls = payrollRepository.findByMonthAndYear(month, year);
@@ -86,7 +87,15 @@ public class BudgetManagementServiceImpl implements BudgetManagementService {
                         return true;
                     })
                     .collect(Collectors.toList());
-            return payrolls;
+            List<PayrollDTO> list = new ArrayList<>();
+            for(int i =0;i<payrolls.size();i++) {
+                Employee employee = employeeRepository.findById(payrolls.get(i).getEmployee()).get();
+                PayrollDTO payrollDTO = new PayrollDTO();
+                payrollDTO.doMappingPayroll(payrolls.get(i),employee);
+                list.add(payrollDTO);
+            }
+
+            return list;
         }
         else {
             List<Employee> employees = (List<Employee>) employeeRepository.findAll();
@@ -103,8 +112,8 @@ public class BudgetManagementServiceImpl implements BudgetManagementService {
                 c.set(Calendar.MONTH,month);
                 c.set(Calendar.DATE,1);
                 int lastDate = c.getActualMaximum(Calendar.DATE);
-                String startDate = String.format("%d/%02d/01",year,month);
-                String endDate =String.format("%d/%02d/%d",year,month,lastDate);
+                String startDate = String.format("%d/-02d-01",year,month);
+                String endDate =String.format("%d-%02d-%d",year,month,lastDate);
                 List<Timework> timeworks = timeworkRepository.findTimeworkByDuration(startDate,endDate);
 
                 int countAbsent = 0;
@@ -117,7 +126,15 @@ public class BudgetManagementServiceImpl implements BudgetManagementService {
                 return payroll;
             }).collect(Collectors.toList());
 
-            return payrolls;
+            List<PayrollDTO> list = new ArrayList<>();
+            for(int i =0;i<payrolls.size();i++) {
+                Employee employee = employeeRepository.findById(payrolls.get(i).getEmployee()).get();
+                PayrollDTO payrollDTO = new PayrollDTO();
+                payrollDTO.doMappingPayroll(payrolls.get(i),employee);
+                list.add(payrollDTO);
+            }
+
+            return list;
         }
     }
 
@@ -223,11 +240,11 @@ public class BudgetManagementServiceImpl implements BudgetManagementService {
             c.set(Calendar.MONTH,toMonth);
             c.set(Calendar.DATE,1);
             int lastDate = c.getActualMaximum(Calendar.DATE);
-            statisticsDTO.setToDate(String.format("%d/%02d/%d",toYear,toMonth,lastDate));
+            statisticsDTO.setToDate(String.format("%d-%02d-%d",toYear,toMonth,lastDate));
 
             statisticsDTO.setBranchId(br.getId());
             statisticsDTO.setBranchName(br.getName());
-            statisticsDTO.setFromDate(String.format("%d/%02d/01",fromYear,fromMonth));
+            statisticsDTO.setFromDate(String.format("%d-%02d-01",fromYear,fromMonth));
             statisticsDTO.setValue(value);
             list.add(statisticsDTO);
         }
@@ -259,45 +276,45 @@ public class BudgetManagementServiceImpl implements BudgetManagementService {
             }
 
             List<Tuition> tuitions = tuitionRepository.findByDurationAndBranch(
-                    String.format("%d/%02d/01",fromYear,fromMonth),
-                    String.format("%d/%02d/%d",toYear,toMonth,lastDate),
+                    String.format("%d-%02d-01",fromYear,fromMonth),
+                    String.format("%d-%02d-%d",toYear,toMonth,lastDate),
                     br.getId());
             for(int i=0;i<tuitions.size();i++)
                 value += tuitions.get(i).getTotalMoney();
 
             List<Bill> bills = billRepository.findByDurationAndBranch(
-                    String.format("%d/%02d/01",fromYear,fromMonth),
-                    String.format("%d/%02d/%d",toYear,toMonth,lastDate),
+                    String.format("%d-%02d-01",fromYear,fromMonth),
+                    String.format("%d-%02d-%d",toYear,toMonth,lastDate),
                     br.getId());
             for(int i=0;i<bills.size();i++)
                 value += bills.get(i).getTotal();
 
             List<Spend> spends = spendRepository.findByDurationAndBranch(
-                    String.format("%d/%02d/01",fromYear,fromMonth),
-                    String.format("%d/%02d/%d",toYear,toMonth,lastDate),
+                    String.format("%d-%02d-01",fromYear,fromMonth),
+                    String.format("%d-%02d-%d",toYear,toMonth,lastDate),
                     br.getId());
             for(int i=0;i<spends.size();i++)
                 value -= spends.get(i).getTotalMoney();
 
             List<Shipway> shipwayAdds = shipwayRepository.findByDurationAndToBranch(
-                    String.format("%d/%02d/01",fromYear,fromMonth),
-                    String.format("%d/%02d/%d",toYear,toMonth,lastDate),
+                    String.format("%d-%02d-01",fromYear,fromMonth),
+                    String.format("%d-%02d-%d",toYear,toMonth,lastDate),
                     br.getId());
             for(int i=0;i<shipwayAdds.size();i++)
                 value -= shipwayAdds.get(i).getTotalMoney();
 
             List<Shipway> shipwayGets = shipwayRepository.findByDurationAndFromBranch(
-                    String.format("%d/%02d/01",fromYear,fromMonth),
-                    String.format("%d/%02d/%d",toYear,toMonth,lastDate),
+                    String.format("%d-%02d-01",fromYear,fromMonth),
+                    String.format("%d-%02d-%d",toYear,toMonth,lastDate),
                     br.getId());
             for(int i=0;i<shipwayGets.size();i++)
                 value += shipwayGets.get(i).getTotalMoney();
 
             StatisticsDTO statisticsDTO = new StatisticsDTO();
-            statisticsDTO.setToDate(String.format("%d/%02d/%d",toYear,toMonth,lastDate));
+            statisticsDTO.setToDate(String.format("%d-%02d-%d",toYear,toMonth,lastDate));
             statisticsDTO.setBranchId(br.getId());
             statisticsDTO.setBranchName(br.getName());
-            statisticsDTO.setFromDate(String.format("%d/%02d/01",fromYear,fromMonth));
+            statisticsDTO.setFromDate(String.format("%d-%02d-01",fromYear,fromMonth));
             statisticsDTO.setValue(value);
             list.add(statisticsDTO);
         }

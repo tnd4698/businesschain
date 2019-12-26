@@ -1,48 +1,26 @@
 package com.tnd.businesschainsystem.Model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@Entity
-@Table(name = "payroll")
-public class Payroll {
+public class PayrollDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
-
-    @Column(name="month")
     private int month;
-
-    @Column(name="year")
     private int year;
-
-    @Column(name="employee")
     private int employee;
-
-    @Column(name="salary")
     private long salary;
-
-    @Column(name="absent")
     private int absent;
-
-    @Column(name="other")
     private long other;
-
-    @Column(name="contentOther")
     private String contentOther;
-
-    @Column(name="totalMoney")
     private int totalMoney;
-
-    @Column(name="createdDate")
     private Date createdDate;
-
-    @Column(name="createdBy")
     private int createdBy;
+    private String employeeID;
+    private String employeeName;
+    private int branchId;
 
     public int getId() {
         return id;
@@ -116,6 +94,30 @@ public class Payroll {
         this.totalMoney = totalMoney;
     }
 
+    public String getEmployeeID() {
+        return employeeID;
+    }
+
+    public void setEmployeeID(String employeeID) {
+        this.employeeID = employeeID;
+    }
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
+
+    public int getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(int branchId) {
+        this.branchId = branchId;
+    }
+
     public String getCreatedDate() {
         return (new SimpleDateFormat("yyyy-MM-dd")).format(this.createdDate);
     }
@@ -139,5 +141,22 @@ public class Payroll {
 
     public void setCreatedBy(int createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public void doMappingPayroll(Payroll payroll, Employee employee) {
+        this.id = payroll.getId();
+        this.month = payroll.getMonth();
+        this.year=payroll.getYear();
+        this.employee=payroll.getEmployee();
+        this.salary=payroll.getSalary();
+        this.absent = payroll.getAbsent();
+        this.other=payroll.getOther();
+        this.contentOther=payroll.getContentOther();
+        this.totalMoney=payroll.getTotalMoney();
+        this.setCreatedDate(payroll.getCreatedDate());
+        this.createdBy=payroll.getCreatedBy();
+        this.employeeID = employee.getEmployeeID();
+        this.employeeName = employee.getName();
+        this.branchId = employee.getBranch();
     }
 }

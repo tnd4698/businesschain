@@ -97,26 +97,26 @@ public class ClassDTO {
     }
 
     public String getFromDate() {
-        return (new SimpleDateFormat("yyyy/MM/dd")).format(this.fromDate);
+        return (new SimpleDateFormat("yyyy-MM-dd")).format(this.fromDate);
     }
 
     public void setFromDate(String date) {
 
         try {
-            this.fromDate = (new SimpleDateFormat("yyyy/MM/dd")).parse(date);
+            this.fromDate = (new SimpleDateFormat("yyyy-MM-dd")).parse(date);
         } catch (ParseException e) {
             System.out.println("Exception : " + e);
         }
     }
 
     public String getToDate() {
-        return (new SimpleDateFormat("yyyy/MM/dd")).format(this.toDate);
+        return (new SimpleDateFormat("yyyy-MM-dd")).format(this.toDate);
     }
 
     public void setToDate(String date) {
 
         try {
-            this.toDate = (new SimpleDateFormat("yyyy/MM/dd")).parse(date);
+            this.toDate = (new SimpleDateFormat("yyyy-MM-dd")).parse(date);
         } catch (ParseException e) {
             System.out.println("Exception : " + e);
         }

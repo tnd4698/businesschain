@@ -20,6 +20,9 @@ public class Timework {
     @Column(name="employee")
     private int employee;
 
+    @Column(name="branch")
+    private int branch;
+
     @Column(name="status")
     private int status;
 
@@ -28,13 +31,13 @@ public class Timework {
     }
 
     public String getDate() {
-        return (new SimpleDateFormat("yyyy/MM/dd")).format(this.date);
+        return (new SimpleDateFormat("yyyy-MM-dd")).format(this.date);
     }
 
     public void setDate(String date) {
 
         try {
-            this.date = (new SimpleDateFormat("yyyy/MM/dd")).parse(date);
+            this.date = (new SimpleDateFormat("yyyy-MM-dd")).parse(date);
         } catch (ParseException e) {
             System.out.println("Exception : " + e);
         }
@@ -48,6 +51,14 @@ public class Timework {
         this.employee = employee;
     }
 
+    public int getBranch() {
+        return branch;
+    }
+
+    public void setBranch(int branch) {
+        this.branch = branch;
+    }
+
     public int getStatus() {
         return status;
     }
@@ -57,9 +68,11 @@ public class Timework {
     }
 
     public void doMappingTimeworkDTO(TimeworkDTO timeworkDTO) {
+        this.id = timeworkDTO.getId();
         this.setDate(timeworkDTO.getDate());
         this.employee = timeworkDTO.getEmployeeId();
         this.status = timeworkDTO.getStatus();
+        this.branch=timeworkDTO.getBranchId();
     }
 
     public void generateId() {

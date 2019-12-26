@@ -142,6 +142,7 @@ public class ClassManagementServiceImpl implements ClassManagementService {
                 studentClass.setStudent(classDTO.getStudents().get(i).getId());
                 studentClass.setClasss(classs.getId());
                 studentClass.setStatusTuition(0);
+                studentClass.setStatus(1);
                 studentClassRepository.save(studentClass);
 
                 Student student = studentRepository.findById(classDTO.getStudents().get(i).getId()).get();

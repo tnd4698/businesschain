@@ -5,6 +5,8 @@ import com.tnd.businesschainsystem.Service.StudentManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -25,7 +27,8 @@ public class StudentManagementController {
     @PostMapping
     public ResponseEntity<?> addStudent(@RequestBody StudentDTO studentDTO) {
 
-        return new ResponseEntity<>(studentManagementService.add(studentDTO),HttpStatus.OK);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return new ResponseEntity<>(studentManagementService.add(auth.getName(),studentDTO),HttpStatus.OK);
     }
 
     @PutMapping("/{studentID}")
