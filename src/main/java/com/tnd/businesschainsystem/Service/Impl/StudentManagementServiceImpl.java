@@ -60,6 +60,7 @@ public class StudentManagementServiceImpl implements StudentManagementService {
                 StudentDTO studentDTO = new StudentDTO();
                 studentDTO.doMappingStudent(student, null, null, br);
                 studentDTO.setStatusTuition(-1);
+                studentDTO.setStatus(0);
                 list.add(studentDTO);
             }
         }

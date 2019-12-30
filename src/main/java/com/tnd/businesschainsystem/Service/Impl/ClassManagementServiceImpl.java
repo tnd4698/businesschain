@@ -115,63 +115,99 @@ public class ClassManagementServiceImpl implements ClassManagementService {
             Classs classs = classRepository.findByClassID(classID);
             classs.doMappingClassDTO(classDTO);
             classRepository.save(classs);
-
-            // update students in class
-            List<StudentClass> oldStudentClasses = studentClassRepository.findByClassId(classs.getId());
-            for(int i=0;i<oldStudentClasses.size();i++)
-                for(int j=0;j<classDTO.getStudents().size();j++)
-                    if(oldStudentClasses.get(i).getStudent() == classDTO.getStudents().get(j).getId())
-                    {
-                        oldStudentClasses.remove(i);
-                        classDTO.getStudents().remove(j);
-                        i--;
-                        break;
-                    }
-            for(int i=0;i<oldStudentClasses.size();i++) {
-
-                oldStudentClasses.get(i).setStatus(0);
-                studentClassRepository.save(oldStudentClasses.get(i));
-
-                Student student = studentRepository.findById(oldStudentClasses.get(i).getStudent()).get();
-                student.setStatus(0);
-                studentRepository.save(student);
-            }
-
-            for(int i=0;i<classDTO.getStudents().size();i++) {
-                StudentClass studentClass = new StudentClass();
-                studentClass.setStudent(classDTO.getStudents().get(i).getId());
-                studentClass.setClasss(classs.getId());
-                studentClass.setStatusTuition(0);
-                studentClass.setStatus(1);
-                studentClassRepository.save(studentClass);
-
-                Student student = studentRepository.findById(classDTO.getStudents().get(i).getId()).get();
-                student.setStatus(1);
-                studentRepository.save(student);
-            }
-
-            // update schedule of class
-            List<Schedule> oldSchedule = scheduleRepository.findByClassId(classs.getId());
-
-            for(int i=0;i<oldSchedule.size();i++)
-                for(int j=0;j<classDTO.getShifts().size();j++) {
-
-                    if(oldSchedule.get(i).getShift() == classDTO.getShifts().get(j).getId()) {
-                        oldSchedule.remove(i);
-                        classDTO.getShifts().remove(j);
-                        i--;
-                        break;
-                    }
+            if(classs.getStatus()==1) {
+                // update students in class
+                for (int i = 0; i < classDTO.getStudents().size(); i++) {
+                    Student student = studentRepository.findById(classDTO.getStudents().get(i).getId()).get();
+                    student.setStatus(1);
+                    studentRepository.save(student);
                 }
-            scheduleRepository.deleteAll(oldSchedule);
 
-            for(int i=0;i<classDTO.getShifts().size();i++) {
-                Schedule schedule = new Schedule();
-                schedule.setClasss(classs.getId());
-                schedule.setShift(classDTO.getShifts().get(i).getId());
-                scheduleRepository.save(schedule);
+
+                List<StudentClass> oldStudentClasses = studentClassRepository.findByClassId(classs.getId());
+                for (int i = 0; i < oldStudentClasses.size(); i++)
+                    for (int j = 0; j < classDTO.getStudents().size(); j++)
+                        if (oldStudentClasses.get(i).getStudent() == classDTO.getStudents().get(j).getId()) {
+                            oldStudentClasses.remove(i);
+                            classDTO.getStudents().remove(j);
+                            i--;
+                            break;
+                        }
+                for (int i = 0; i < oldStudentClasses.size(); i++) {
+
+                    oldStudentClasses.get(i).setStatus(0);
+                    studentClassRepository.save(oldStudentClasses.get(i));
+
+                    Student student = studentRepository.findById(oldStudentClasses.get(i).getStudent()).get();
+                    student.setStatus(0);
+                    studentRepository.save(student);
+                }
+
+                for (int i = 0; i < classDTO.getStudents().size(); i++) {
+                    StudentClass studentClass = new StudentClass();
+                    studentClass.setStudent(classDTO.getStudents().get(i).getId());
+                    studentClass.setClasss(classs.getId());
+                    studentClass.setStatusTuition(0);
+                    studentClass.setStatus(1);
+                    studentClassRepository.save(studentClass);
+
+                    Student student = studentRepository.findById(classDTO.getStudents().get(i).getId()).get();
+                    student.setStatus(1);
+                    studentRepository.save(student);
+                }
+
+                // update schedule of class
+                List<Schedule> oldSchedule = scheduleRepository.findByClassId(classs.getId());
+
+                for (int i = 0; i < oldSchedule.size(); i++)
+                    for (int j = 0; j < classDTO.getShifts().size(); j++) {
+
+                        if (oldSchedule.get(i).getShift() == classDTO.getShifts().get(j).getId()) {
+                            oldSchedule.remove(i);
+                            classDTO.getShifts().remove(j);
+                            i--;
+                            break;
+                        }
+                    }
+                scheduleRepository.deleteAll(oldSchedule);
+
+                for (int i = 0; i < classDTO.getShifts().size(); i++) {
+                    Schedule schedule = new Schedule();
+                    schedule.setClasss(classs.getId());
+                    schedule.setShift(classDTO.getShifts().get(i).getId());
+                    scheduleRepository.save(schedule);
+                }
             }
+            else {
+                List<StudentClass> oldStudentClasses = studentClassRepository.findByClassId(classs.getId());
+                for (int i = 0; i < oldStudentClasses.size(); i++) {
 
+                    Student student = studentRepository.findById(oldStudentClasses.get(i).getStudent()).get();
+                    student.setStatus(0);
+                    studentRepository.save(student);
+                }
+
+                List<Schedule> oldSchedule = scheduleRepository.findByClassId(classs.getId());
+
+                for (int i = 0; i < oldSchedule.size(); i++)
+                    for (int j = 0; j < classDTO.getShifts().size(); j++) {
+
+                        if (oldSchedule.get(i).getShift() == classDTO.getShifts().get(j).getId()) {
+                            oldSchedule.remove(i);
+                            classDTO.getShifts().remove(j);
+                            i--;
+                            break;
+                        }
+                    }
+                scheduleRepository.deleteAll(oldSchedule);
+
+                for (int i = 0; i < classDTO.getShifts().size(); i++) {
+                    Schedule schedule = new Schedule();
+                    schedule.setClasss(classs.getId());
+                    schedule.setShift(classDTO.getShifts().get(i).getId());
+                    scheduleRepository.save(schedule);
+                }
+            }
             return new ResponseDTO().success(Constants.DONE_UPDATECLASS);
         } catch (Exception e) {
             return new ResponseDTO().fail(Constants.FAIL_UPDATECLASS);

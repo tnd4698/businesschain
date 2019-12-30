@@ -1307,79 +1307,79 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             shift14.setTime("Ca 2");
             shiftRepository.save(shift14);
 
-            //student
-            Student student1 = new Student();
-            student1.generateID(((List<Student>)studentRepository.findAll()).size()+1);
-            student1.setName("Nguyen Van A");
-            student1.setBranch(br1.getId());
-            student1.setAddress("Tan Binh, Ho Chi Minh, VN");
-            student1.setBirthDay("1998-06-04");
-            student1.setCardID("215438985");
-            student1.setEmail("tannguyenduy98@gmail.com");
-            student1.setGender(0);
-            student1.setStatus(1);
-            student1.setPhoneNumber("0978301442");
-            studentRepository.save(student1);
-
-            // teacher
-            Employee teacher1 = new Employee();
-            teacher1.generateID(((List<Employee>)employeeRepository.findAll()).size()+1);
-            teacher1.setName("Pham B B");
-            teacher1.setBranch(br1.getId());
-            teacher1.setStatus(1);
-            teacher1.setSalary(4000000);
-            teacher1.setAddress("Tan Binh, Ho Chi Minh, VN");
-            teacher1.setBirthDay("1998-06-04");
-            teacher1.setCardID("215438985");
-            teacher1.setEmail("tannguyenduy98@gmail.com");
-            teacher1.setGender(0);
-            teacher1.setPhoneNumber("0978301442");
-            employeeRepository.save(teacher1);
-
-            EmployeeRole employeeRolet1 = new EmployeeRole();
-            employeeRolet1.setEmployee(teacher1.getId());
-            employeeRolet1.setRole(role_teacher.getId());
-            employeeRoleRepository.save(employeeRolet1);
-
-            // class
-            Classs classs1 = new Classs();
-            classs1.generateID(((List<Classs>)classRepository.findAll()).size()+1);
-            classs1.setBranch(br1.getId());
-            classs1.setFromDate("2019-01-22");
-            classs1.setToDate("2019-02-22");
-            classs1.setStatus(1);
-            classs1.setTeacher(teacher1.getId());
-            classRepository.save(classs1);
-
-            //student class
-            StudentClass studentClass1= new StudentClass();
-            studentClass1.setClasss(classs1.getId());
-            studentClass1.setStudent(student1.getId());
-            studentClass1.setStatus(1);
-            studentClass1.setStatusTuition(0);
-            studentClassRepository.save(studentClass1);
-
-            //resource
-            Material material1 = new Material();
-            material1.setCount(100);
-            material1.setPrice(100000);
-            material1.setMaterialID("MTL3949347165892");
-            material1.setName("cafe trung nguyên");
-            materialRepository.save(material1);
-            materialRepository.save(material1);
-
-            MaterialBranch materialBranch1 = materialBranchRepository.findByMaterialIdAndBranchId(material1.getId(),origin.getId());
-            materialBranch1.setCount(100);
-            materialBranchRepository.save(materialBranch1);
-
-            // equipment
-            Equipment equipment1 = new Equipment();
-            equipment1.setStatus(1);
-            equipment1.setBranch(origin.getId());
-            equipment1.setEquipmentID("EQT987342389429834");
-            equipment1.setName("Màn hình LG239");
-            equipment1.setPrice(20000000);
-            equipmentRepository.save(equipment1);
+//            //student
+//            Student student1 = new Student();
+//            student1.generateID(((List<Student>)studentRepository.findAll()).size()+1);
+//            student1.setName("Nguyen Van A");
+//            student1.setBranch(br1.getId());
+//            student1.setAddress("Tan Binh, Ho Chi Minh, VN");
+//            student1.setBirthDay("1998-06-04");
+//            student1.setCardID("215438985");
+//            student1.setEmail("tannguyenduy98@gmail.com");
+//            student1.setGender(0);
+//            student1.setStatus(1);
+//            student1.setPhoneNumber("0978301442");
+//            studentRepository.save(student1);
+//
+//            // teacher
+//            Employee teacher1 = new Employee();
+//            teacher1.generateID(((List<Employee>)employeeRepository.findAll()).size()+1);
+//            teacher1.setName("Pham B B");
+//            teacher1.setBranch(br1.getId());
+//            teacher1.setStatus(1);
+//            teacher1.setSalary(4000000);
+//            teacher1.setAddress("Tan Binh, Ho Chi Minh, VN");
+//            teacher1.setBirthDay("1998-06-04");
+//            teacher1.setCardID("215438985");
+//            teacher1.setEmail("tannguyenduy98@gmail.com");
+//            teacher1.setGender(0);
+//            teacher1.setPhoneNumber("0978301442");
+//            employeeRepository.save(teacher1);
+//
+//            EmployeeRole employeeRolet1 = new EmployeeRole();
+//            employeeRolet1.setEmployee(teacher1.getId());
+//            employeeRolet1.setRole(role_teacher.getId());
+//            employeeRoleRepository.save(employeeRolet1);
+//
+//            // class
+//            Classs classs1 = new Classs();
+//            classs1.generateID(((List<Classs>)classRepository.findAll()).size()+1);
+//            classs1.setBranch(br1.getId());
+//            classs1.setFromDate("2019-01-22");
+//            classs1.setToDate("2019-02-22");
+//            classs1.setStatus(1);
+//            classs1.setTeacher(teacher1.getId());
+//            classRepository.save(classs1);
+//
+//            //student class
+//            StudentClass studentClass1= new StudentClass();
+//            studentClass1.setClasss(classs1.getId());
+//            studentClass1.setStudent(student1.getId());
+//            studentClass1.setStatus(1);
+//            studentClass1.setStatusTuition(0);
+//            studentClassRepository.save(studentClass1);
+//
+//            //resource
+//            Material material1 = new Material();
+//            material1.setCount(100);
+//            material1.setPrice(100000);
+//            material1.setMaterialID("MTL3949347165892");
+//            material1.setName("cafe trung nguyên");
+//            materialRepository.save(material1);
+//            materialRepository.save(material1);
+//
+//            MaterialBranch materialBranch1 = materialBranchRepository.findByMaterialIdAndBranchId(material1.getId(),origin.getId());
+//            materialBranch1.setCount(100);
+//            materialBranchRepository.save(materialBranch1);
+//
+//            // equipment
+//            Equipment equipment1 = new Equipment();
+//            equipment1.setStatus(1);
+//            equipment1.setBranch(origin.getId());
+//            equipment1.setEquipmentID("EQT987342389429834");
+//            equipment1.setName("Màn hình LG239");
+//            equipment1.setPrice(20000000);
+//            equipmentRepository.save(equipment1);
         }
     }
 
