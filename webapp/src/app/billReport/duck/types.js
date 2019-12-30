@@ -1,0 +1,5 @@
+const GETLISTBILLREPORT = 'GETLISTBILLREPORT';
+
+export default {
+    GETLISTBILLREPORT
+}

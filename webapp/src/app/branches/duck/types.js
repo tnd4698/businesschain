@@ -1,0 +1,7 @@
+const GETLISTBRANCH = 'GETLISTBRANCH';
+const SEARCH = 'SEARCHBRANCH';
+
+export default {
+    GETLISTBRANCH,
+    SEARCH
+}

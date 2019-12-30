@@ -1,0 +1,54 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "front-end web",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.19.0",
+    "flag-icon-css": "^3.4.2",
+    "font-awesome": "^4.7.0",
+    "jspdf": "^1.5.3",
+    "react": "^16.10.2",
+    "react-datepicker": "^2.9.6",
+    "react-dom": "^16.10.2",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0",
+    "react-scrollbar": "^0.5.6",
+    "react-select": "^3.0.8",
+    "react-table": "^6.10.3",
+    "reactstrap": "^8.0.1",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "simple-line-icons": "^2.4.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "client": "react-scripts start",
+    "server": "cd .. && cd busines* && mvn spring-boot:run",
+    "dev": "concurrently 'npm run server' 'npm run client'",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "http://localhost:8080",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "antd": "^3.25.3",
+    "concurrently": "^5.0.0"
+  }
+}

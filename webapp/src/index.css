@@ -1,0 +1,107 @@
+.main {
+  margin-top: 5px;
+}
+
+.mid_header {
+  text-align: center;
+}
+
+.small_container {
+  max-width: 900px;
+  margin: auto;
+}
+
+.item_menu p {
+  text-align: center;
+}
+
+.item_menu .img_item {
+  width: 100%;
+  height: 100px;
+}
+
+.item_menu input {
+  text-align: center;
+}
+
+.menu {
+  height: 400px;
+}
+
+.bill {
+  position: relative;
+  height: 400px;
+}
+
+.bill button {
+  position: absolute;
+  bottom: 20px;
+  right: 40px;
+}
+
+.select_header::-ms-expand {
+  display: none;
+}
+
+.select_header {
+  position: relative;
+  display: flex;
+  width: 130px;
+  height: 3em;
+  line-height: 3;
+  background: #0080ff;
+  overflow: hidden;
+  border-radius: .25em;
+}
+
+.select_header {
+  flex: 1;
+  padding: 0 .5em;
+  color: #fff;
+  cursor: pointer;
+}
+
+.select_header::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #0080ff;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+
+.select_header:hover::after {
+  color: #f39c12;
+}
+
+.search {
+  width: 140px;
+}
+
+.search input {
+  border-radius: .25em;
+}
+
+.select_header {
+  margin-right: 5px;
+}
+
+.date button {
+  border-radius: .25em;
+}
+
+#spend-total::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+#spend-content {
+  height: 300px;
+}
