@@ -1,11 +1,9 @@
 package com.tnd.businesschainsystem.Service;
 
 import com.tnd.businesschainsystem.Bean.ResponseDTO;
-import com.tnd.businesschainsystem.Model.EmployeeDTO;
-import com.tnd.businesschainsystem.Model.Timework;
-import com.tnd.businesschainsystem.Model.TimeworkDTO;
+import com.tnd.businesschainsystem.Model.DTO.EmployeeDTO;
+import com.tnd.businesschainsystem.Model.DTO.TimeworkDTO;
 import com.tnd.businesschainsystem.Model.TimeworkList;
-import org.springframework.http.HttpStatus;
 
 import java.util.List;
 

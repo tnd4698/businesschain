@@ -1,5 +1,10 @@
-package com.tnd.businesschainsystem.Model;
+package com.tnd.businesschainsystem.Model.DTO;
 
+
+import com.tnd.businesschainsystem.Model.Branch;
+import com.tnd.businesschainsystem.Model.Classs;
+import com.tnd.businesschainsystem.Model.Student;
+import com.tnd.businesschainsystem.Model.StudentClass;
 
 public class StudentDTO {
 

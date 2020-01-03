@@ -2,7 +2,7 @@ package com.tnd.businesschainsystem.Service;
 
 import com.tnd.businesschainsystem.Bean.ResponseDTO;
 import com.tnd.businesschainsystem.Model.Import;
-import com.tnd.businesschainsystem.Model.ResourceDTO;
+import com.tnd.businesschainsystem.Model.DTO.ResourceDTO;
 import com.tnd.businesschainsystem.Model.Shipway;
 
 import java.util.List;

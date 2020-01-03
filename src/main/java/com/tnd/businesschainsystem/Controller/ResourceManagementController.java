@@ -1,7 +1,7 @@
 package com.tnd.businesschainsystem.Controller;
 
 import com.tnd.businesschainsystem.Model.Import;
-import com.tnd.businesschainsystem.Model.ResourceDTO;
+import com.tnd.businesschainsystem.Model.DTO.ResourceDTO;
 import com.tnd.businesschainsystem.Model.Shipway;
 import com.tnd.businesschainsystem.Service.ResourceManagementService;
 import org.springframework.beans.factory.annotation.Autowired;

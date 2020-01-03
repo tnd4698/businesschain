@@ -1,4 +1,6 @@
-package com.tnd.businesschainsystem.Model;
+package com.tnd.businesschainsystem.Model.DTO;
+
+import com.tnd.businesschainsystem.Model.Rule;
 
 public class ItemMenuDAO {
 

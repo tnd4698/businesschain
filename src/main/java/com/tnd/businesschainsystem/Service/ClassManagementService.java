@@ -1,7 +1,7 @@
 package com.tnd.businesschainsystem.Service;
 
 import com.tnd.businesschainsystem.Bean.ResponseDTO;
-import com.tnd.businesschainsystem.Model.ClassDTO;
+import com.tnd.businesschainsystem.Model.DTO.ClassDTO;
 import com.tnd.businesschainsystem.Model.Shift;
 
 import java.util.List;

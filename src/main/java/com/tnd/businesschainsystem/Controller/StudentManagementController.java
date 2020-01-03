@@ -1,6 +1,6 @@
 package com.tnd.businesschainsystem.Controller;
 
-import com.tnd.businesschainsystem.Model.StudentDTO;
+import com.tnd.businesschainsystem.Model.DTO.StudentDTO;
 import com.tnd.businesschainsystem.Service.StudentManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

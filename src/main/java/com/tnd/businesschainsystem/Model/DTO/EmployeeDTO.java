@@ -1,4 +1,8 @@
-package com.tnd.businesschainsystem.Model;
+package com.tnd.businesschainsystem.Model.DTO;
+
+import com.tnd.businesschainsystem.Model.Branch;
+import com.tnd.businesschainsystem.Model.Employee;
+import com.tnd.businesschainsystem.Model.Role;
 
 import java.util.Date;
 

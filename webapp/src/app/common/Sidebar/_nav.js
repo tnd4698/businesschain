@@ -1,15 +1,6 @@
 export default {
   items1: [
     {
-      name: 'Dashboard',
-      url: '/dashboard',
-      icon: 'icon-speedometer',
-      badge: {
-        variant: 'info',
-        text: 'NEW'
-      }
-    },
-    {
       title: true,
       name: 'Kinh doanh',
       wrapper: {
@@ -71,15 +62,6 @@ export default {
 
   items2: [
     {
-      name: 'Dashboard',
-      url: '/dashboard',
-      icon: 'icon-speedometer',
-      badge: {
-        variant: 'info',
-        text: 'NEW'
-      }
-    },
-    {
       title: true,
       name: 'Kinh doanh',
       wrapper: {
@@ -139,15 +121,6 @@ export default {
 
 
   items3: [
-    {
-      name: 'Dashboard',
-      url: '/dashboard',
-      icon: 'icon-speedometer',
-      badge: {
-        variant: 'info',
-        text: 'NEW'
-      }
-    },
     {
       title: true,
       name: 'Chi tiêu',

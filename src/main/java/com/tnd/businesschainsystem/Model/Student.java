@@ -1,7 +1,8 @@
 package com.tnd.businesschainsystem.Model;
 
+import com.tnd.businesschainsystem.Model.DTO.StudentDTO;
+
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name="student")

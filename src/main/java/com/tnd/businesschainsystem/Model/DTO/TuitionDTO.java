@@ -1,4 +1,4 @@
-package com.tnd.businesschainsystem.Model;
+package com.tnd.businesschainsystem.Model.DTO;
 
 import java.util.Date;
 

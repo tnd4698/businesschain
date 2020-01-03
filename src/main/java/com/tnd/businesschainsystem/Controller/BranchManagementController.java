@@ -1,8 +1,7 @@
 package com.tnd.businesschainsystem.Controller;
 
-import com.tnd.businesschainsystem.Model.Branch;
-import com.tnd.businesschainsystem.Model.BranchDTO;
-import com.tnd.businesschainsystem.Model.ItemMenuDAO;
+import com.tnd.businesschainsystem.Model.DTO.BranchDTO;
+import com.tnd.businesschainsystem.Model.DTO.ItemMenuDAO;
 import com.tnd.businesschainsystem.Service.BranchManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

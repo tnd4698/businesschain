@@ -1,4 +1,9 @@
-package com.tnd.businesschainsystem.Model;
+package com.tnd.businesschainsystem.Model.DTO;
+
+import com.tnd.businesschainsystem.Model.Branch;
+import com.tnd.businesschainsystem.Model.Equipment;
+import com.tnd.businesschainsystem.Model.Material;
+import com.tnd.businesschainsystem.Model.MaterialBranch;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

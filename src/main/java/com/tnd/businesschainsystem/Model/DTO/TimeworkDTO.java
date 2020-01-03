@@ -1,4 +1,7 @@
-package com.tnd.businesschainsystem.Model;
+package com.tnd.businesschainsystem.Model.DTO;
+
+import com.tnd.businesschainsystem.Model.Employee;
+import com.tnd.businesschainsystem.Model.Timework;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

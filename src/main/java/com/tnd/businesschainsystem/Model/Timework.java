@@ -1,5 +1,7 @@
 package com.tnd.businesschainsystem.Model;
 
+import com.tnd.businesschainsystem.Model.DTO.TimeworkDTO;
+
 import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

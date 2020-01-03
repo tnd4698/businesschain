@@ -1,8 +1,7 @@
 package com.tnd.businesschainsystem.Controller;
 
-import com.tnd.businesschainsystem.Model.EmployeeDTO;
-import com.tnd.businesschainsystem.Model.Timework;
-import com.tnd.businesschainsystem.Model.TimeworkDTO;
+import com.tnd.businesschainsystem.Model.DTO.EmployeeDTO;
+import com.tnd.businesschainsystem.Model.DTO.TimeworkDTO;
 import com.tnd.businesschainsystem.Service.EmployeeManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

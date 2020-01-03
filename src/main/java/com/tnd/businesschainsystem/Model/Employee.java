@@ -1,5 +1,7 @@
 package com.tnd.businesschainsystem.Model;
 
+import com.tnd.businesschainsystem.Model.DTO.EmployeeDTO;
+
 import javax.persistence.*;
 import java.util.Date;
 

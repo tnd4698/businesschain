@@ -3,6 +3,8 @@ package com.tnd.businesschainsystem.Service.Impl;
 import com.tnd.businesschainsystem.Bean.ResponseDTO;
 import com.tnd.businesschainsystem.Message.Constants;
 import com.tnd.businesschainsystem.Model.*;
+import com.tnd.businesschainsystem.Model.DTO.ClassDTO;
+import com.tnd.businesschainsystem.Model.DTO.StudentDTO;
 import com.tnd.businesschainsystem.Repository.*;
 import com.tnd.businesschainsystem.Service.ClassManagementService;
 import org.springframework.beans.factory.annotation.Autowired;

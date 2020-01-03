@@ -1,15 +1,11 @@
 package com.tnd.businesschainsystem.Controller;
 
-import com.tnd.businesschainsystem.Model.ClassDTO;
-import com.tnd.businesschainsystem.Model.Classs;
-import com.tnd.businesschainsystem.Model.Student;
+import com.tnd.businesschainsystem.Model.DTO.ClassDTO;
 import com.tnd.businesschainsystem.Service.ClassManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/class")

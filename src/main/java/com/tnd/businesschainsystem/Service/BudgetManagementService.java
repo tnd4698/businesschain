@@ -2,9 +2,9 @@ package com.tnd.businesschainsystem.Service;
 
 import com.tnd.businesschainsystem.Bean.ResponseDTO;
 import com.tnd.businesschainsystem.Model.Payroll;
-import com.tnd.businesschainsystem.Model.PayrollDTO;
+import com.tnd.businesschainsystem.Model.DTO.PayrollDTO;
 import com.tnd.businesschainsystem.Model.Spend;
-import com.tnd.businesschainsystem.Model.StatisticsDTO;
+import com.tnd.businesschainsystem.Model.DTO.StatisticsDTO;
 
 import java.util.List;
 
