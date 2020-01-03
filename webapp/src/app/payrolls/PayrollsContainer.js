@@ -21,12 +21,14 @@ const mapDispatchToProps = dispatch => {
   const getListPayroll = (month,year,branch='null',role='null')=> dispatch(payrollOperations.getListPayroll(month,year,branch,role));
   const editPayroll = payroll => dispatch(payrollOperations.editPayroll(payroll));
   const savePayroll = listPayroll => dispatch(payrollOperations.savePayroll(listPayroll));
+  const search = (searchContent,month,year,branch,role)=>dispatch(payrollOperations.search(searchContent,month,year,branch,role));
   return {
       getListBranch,
       getListRole,
       getListPayroll,
       editPayroll,
-      savePayroll
+      savePayroll,
+      search
   }
 }
 

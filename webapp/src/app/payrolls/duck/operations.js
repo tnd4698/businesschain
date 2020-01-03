@@ -7,7 +7,7 @@ import {
 const getListPayroll = (month,year,branch='null',role='null')=>{
     return dispatch => {
         getPayrolls(month,year,branch,role)
-        .then(res=>{console.log(res)
+        .then(res=>{
             dispatch(actions.getListPayroll(res.data));
         })
     }
@@ -28,8 +28,18 @@ const savePayroll = listPayroll=>{
     }
 }
 
+const search = (searchContent,month,year,branch,role)=>{
+    return dispatch=>{
+        getPayrolls(month,year,branch,role)
+        .then(res=>{
+            dispatch(actions.search(res.data,searchContent));
+        })
+    }
+}
+
 export default {
     getListPayroll,
     editPayroll,
-    savePayroll
+    savePayroll,
+    search
 }

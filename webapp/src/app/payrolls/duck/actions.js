@@ -14,7 +14,18 @@ const editPayroll = payroll =>{
     }
 }
 
+const search = (listPayroll,searchContent) =>{
+    return {
+        type: types.SEARCH,
+        value: {
+            listPayroll,
+            searchContent
+        }
+    }
+}
+
 export default {
     getListPayroll,
-    editPayroll
+    editPayroll,
+    search
 }

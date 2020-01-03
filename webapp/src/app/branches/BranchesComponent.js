@@ -49,7 +49,7 @@ class BranchesComponent extends Component {
         if (this.state.searchContent === '')
             this.handleFilter();
         else
-            this.props.search(this.state.searchContent, this.state.filter.status);
+            this.props.search(this.state.searchContent, this.state.status);
 
         this.forceUpdate();
     }

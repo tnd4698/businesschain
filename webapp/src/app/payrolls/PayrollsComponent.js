@@ -46,21 +46,21 @@ class PayrollsComponent extends Component {
     }
 
     handleFilter() {
-        this.props.getListPayroll(this.state.filter.month.split('-')[1], this.state.filter.month.split('-')[0],this.state.filter.branch,this.state.filter.role);
+        this.props.getListPayroll(this.state.filter.month.split('-')[1], this.state.filter.month.split('-')[0], this.state.filter.branch, this.state.filter.role);
     }
 
     handleSearch() {
         if (this.state.searchContent === '')
             this.handleFilter();
         else {
-                // this.props.search(this.state.searchContent,this.props.curUser.branchId, this.state.filter.role, this.state.filter.status);
+            this.props.search(this.state.searchContent, this.state.filter.month.split('-')[1], this.state.filter.month.split('-')[0], this.state.filter.branch, this.state.filter.role);
         }
         this.forceUpdate();
     }
 
     toggleEdit(employeeId) {
         const payroll = this.props.listPayroll.filter(cur => cur.employee === employeeId)[0];
-        this.setState({ payroll: payroll },()=>this.setState({modal:!this.state.modal}));
+        this.setState({ payroll: payroll }, () => this.setState({ modal: !this.state.modal }));
     }
 
     handlePayrollChange(e) {
@@ -69,12 +69,12 @@ class PayrollsComponent extends Component {
         this.setState({ payroll: payroll });
     }
 
-    editPayroll(){
+    editPayroll() {
         this.props.editPayroll(this.state.payroll);
-        setTimeout(()=>this.setState({listPayroll:this.props.listPayroll},()=>this.setState({modal:!this.state.modal})));
+        setTimeout(() => this.setState({ listPayroll: this.props.listPayroll }, () => this.setState({ modal: !this.state.modal })));
     }
 
-    savePayroll(){
+    savePayroll() {
         const listPayroll = this.props.listPayroll.map(payroll => {
             payroll.totalMoney = Math.ceil(payroll.salary * (30 - payroll.absent) / 30 + parseInt(payroll.other));
             return payroll;
@@ -200,7 +200,7 @@ class PayrollsComponent extends Component {
                         />
                         <hr />
                         <Button color="primary" className='float-right'
-                        onClick={()=>this.savePayroll()}>Xác nhận</Button>
+                            onClick={() => this.savePayroll()}>Xác nhận</Button>
                     </CardBody>
                 </Card>
                 <Modal isOpen={this.state.modal} toggle={() => this.setState({ modal: !this.state.modal })}

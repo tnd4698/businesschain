@@ -22,20 +22,20 @@ const employeeReducer = (state = INITIAL_STATE, action) => {
         }
 
         case types.SEARCH: {
-            let employees = action.value.listEmployee;
-            for (let i = 0; i < employees.length; i++) {
-                if (!String(employees[i].employeeID).includes(action.value.searchContent)
-                    && !String(employees[i].employeeName).includes(action.value.searchContent)
-                    && !String(employees[i].branchName).includes(action.value.searchContent)
-                    && !String(employees[i].roleName).includes(action.value.searchContent)) {
-                    employees.splice(i, 1);
+            let listEmployee = action.value.listEmployee;
+            for (let i = 0; i < listEmployee.length; i++) {
+                if (!String(listEmployee[i].employeeID).includes(action.value.searchContent)
+                    && !String(listEmployee[i].employeeName).includes(action.value.searchContent)
+                    && !String(listEmployee[i].branchName).includes(action.value.searchContent)
+                    && !String(listEmployee[i].roleName).includes(action.value.searchContent)) {
+                    listEmployee.splice(i, 1);
                     i--;
                     continue;
                 }
             }
             return {
                 ...state,
-                listEmployee: employees
+                listEmployee: listEmployee
             }
         }
 

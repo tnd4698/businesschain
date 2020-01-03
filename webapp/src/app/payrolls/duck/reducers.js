@@ -30,6 +30,24 @@ const payrollReducer = (state = INITIAL_STATE, action) => {
       }
     }
 
+    case types.SEARCH: {
+      let listPayroll = action.value.listPayroll;
+      for (let i = 0; i < listPayroll.length; i++) {
+          if (!String(listPayroll[i].employeeID).includes(action.value.searchContent)
+              && !String(listPayroll[i].employeeName).includes(action.value.searchContent)
+              && !String(listPayroll[i].salary).includes(action.value.searchContent)
+              && !String(listPayroll[i].absent).includes(action.value.searchContent)) {
+                listPayroll.splice(i, 1);
+              i--;
+              continue;
+          }
+      }
+      return {
+          ...state,
+          listPayroll: listPayroll
+      }
+  }
+
     default: return state;
   }
 }
