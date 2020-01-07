@@ -113,7 +113,10 @@ class TimeworksComponent extends Component {
                             <Row>
                                 <Col sm="4">
                                     <h4 className="mb-0" style={{ display: "inline" }}><strong>Quản lý thời gian làm việc</strong></h4>{' '}
-                                    <Button outline color='info' style={{ display: "inline" }} onClick={() => this.handleAddToggle()}>+</Button>
+                                    {
+                                        this.props.curRole==='[ROLE_BRANCHMANAGER]' &&
+                                        <Button outline color='info' style={{ display: "inline" }} onClick={() => this.handleAddToggle()}>+</Button>
+                                    }
                                     <Form inline>
                                         <DatePicker
                                             dateFormat="dd/MM/yyyy"
